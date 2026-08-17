@@ -1,0 +1,14 @@
+/* TEAM */
+  Étterem: Enzo di Napoli
+  Hely: Kossuth tér 16., 3000 Hatvan, Magyarország
+  Telefon: +36 20 932 3270
+
+/* SITE */
+  Nyelv: magyar (hu-HU)
+  Készült: Next.js (App Router), TypeScript, Tailwind CSS
+  Betűk: Bodoni Moda, Archivo
+  Rendelés: foodora — https://www.foodora.hu/restaurant/tclu/enzo-di-napoli
+
+/* NOTE */
+  Az étel- és étteremfotók a pizzéria sajátjai.
+  Generált vagy stock ételfotó nincs az oldalon.

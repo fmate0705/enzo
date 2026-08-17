@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Enzo di Napoli">
+  <!--
+    Maskable variant. Android crops installed icons to a platform shape, so the
+    mark sits inside the 40% safe zone and the ground bleeds to the full canvas.
+    The ring is dropped rather than risk it being clipped by the mask.
+  -->
+  <rect width="64" height="64" fill="#1B191A" />
+  <text
+    x="32"
+    y="32"
+    fill="#CCBE86"
+    font-family="Bodoni MT, Bodoni Moda, Didot, Georgia, serif"
+    font-size="26"
+    font-weight="500"
+    text-anchor="middle"
+    dominant-baseline="central"
+  >E</text>
+</svg>

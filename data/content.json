@@ -1,0 +1,469 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-16T22:21:38.556Z",
+  "menu": [
+    {
+      "id": "26267064",
+      "slug": "margherita",
+      "name": "Margherita",
+      "category": "pizzak",
+      "description": "paradicsomszósz, Fior di Latte mozzarella sajt, bazsalikom, olívaolaj",
+      "price": 2900,
+      "priceFrom": true,
+      "image": "/images/etelek/margherita.jpg",
+      "popular": true,
+      "signature": true
+    },
+    {
+      "id": "26267065",
+      "slug": "prosciutto-cotto-e-funghi",
+      "name": "Prosciutto cotto e funghi",
+      "category": "pizzak",
+      "description": "paradicsomszósz, Fior di Latte mozzarella sajt, fűszeres gomba, prosciutto cotto, bazsalikom, olívaolaj",
+      "price": 3790,
+      "priceFrom": true,
+      "image": "/images/etelek/prosciutto-cotto-e-funghi.jpg",
+      "popular": true,
+      "signature": false
+    },
+    {
+      "id": "26267066",
+      "slug": "diavola",
+      "name": "Diavola",
+      "category": "pizzak",
+      "description": "paradicsomszósz, Fior di Latte mozzarella sajt, Diavola pikáns szalámi, fűszeres, erős pepperoni, bazsalikom",
+      "price": 3590,
+      "priceFrom": true,
+      "image": "/images/etelek/diavola.jpg",
+      "popular": true,
+      "signature": true
+    },
+    {
+      "id": "26267067",
+      "slug": "salame",
+      "name": "Salame",
+      "category": "pizzak",
+      "description": "paradicsomszósz, Fior di Latte mozzarella sajt, Napoli csemegeszalámi, bazsalikom",
+      "price": 3790,
+      "priceFrom": true,
+      "image": "/images/etelek/salame.jpg",
+      "popular": true,
+      "signature": false
+    },
+    {
+      "id": "26267068",
+      "slug": "quattro-formaggi",
+      "name": "Quattro formaggi",
+      "category": "pizzak",
+      "description": "paradicsomszósz, Fior di Latte mozzarella sajt, gorgonzola sajt, Provola füstölt sajt, Grana Padano parmezán sajt, bazsalikom, olívaolaj",
+      "price": 3950,
+      "priceFrom": true,
+      "image": "/images/etelek/quattro-formaggi.jpg",
+      "popular": true,
+      "signature": true
+    },
+    {
+      "id": "26267069",
+      "slug": "tonno-e-cipolla",
+      "name": "Tonno e cipolla",
+      "category": "pizzak",
+      "description": "paradicsomszósz, Fior di Latte mozzarella sajt, tonhaltörzs, lila hagyma, kapribogyó, olívabogyó, citrusolaj",
+      "price": 3950,
+      "priceFrom": true,
+      "image": "/images/etelek/tonno-e-cipolla.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267070",
+      "slug": "genovese",
+      "name": "Genovese",
+      "category": "pizzak",
+      "description": "bazsalikomos pesto, bivaly mozzarella sajt, koktélparadicsom, Grana Padano parmezán sajt, bazsalikom, fenyőmag, olívaolaj",
+      "price": 4190,
+      "priceFrom": true,
+      "image": "/images/etelek/genovese.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267071",
+      "slug": "bufalina",
+      "name": "Bufalina",
+      "category": "pizzak",
+      "description": "paradicsomszósz, bivaly mozzarella sajt, bazsalikom, olívaolaj",
+      "price": 4190,
+      "priceFrom": true,
+      "image": "/images/etelek/bufalina.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267072",
+      "slug": "capricciosa",
+      "name": "Capricciosa",
+      "category": "pizzak",
+      "description": "paradicsomszósz, Fior di Latte mozzarella sajt, fűszeres gomba, articsóka, prosciutto cotto, Napoli csemegeszalámi, bazsalikom, olívaolaj",
+      "price": 4450,
+      "priceFrom": true,
+      "image": "/images/etelek/capricciosa.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267073",
+      "slug": "maradona",
+      "name": "Maradona",
+      "category": "pizzak",
+      "description": "Fior di Latte mozzarella sajt, prosciutto cotto, pancetta, rukkola, ricotta, narancslekvár, bazsalikom, pirított dió",
+      "price": 4550,
+      "priceFrom": true,
+      "image": "/images/etelek/maradona.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267074",
+      "slug": "zucchine-e-pancetta",
+      "name": "Zucchine e pancetta",
+      "category": "pizzak",
+      "description": "pisztáciás-sós krém, Fior di Latte mozzarella sajt, pancetta, fűszeres, sárga datolyaparadicsom, grillezett cukkini",
+      "price": 4450,
+      "priceFrom": true,
+      "image": "/images/etelek/zucchine-e-pancetta.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267075",
+      "slug": "tartufo",
+      "name": "Tartufo",
+      "category": "pizzak",
+      "description": "szarvasgombakrém, Fior di Latte mozzarella sajt, fűszeres vargányagomba, grillezett cukkini, bazsalikom",
+      "price": 4550,
+      "priceFrom": true,
+      "image": "/images/etelek/tartufo.jpg",
+      "popular": false,
+      "signature": true
+    },
+    {
+      "id": "26267076",
+      "slug": "prosciutto-crudo",
+      "name": "Prosciutto crudo",
+      "category": "pizzak",
+      "description": "paradicsomszósz, Fior di Latte mozzarella sajt, prosciutto crudo fűszeres piros és sárga datolyaparadicsom, olívabogyó, rukkola, parmezánpehely, olívaolaj",
+      "price": 4550,
+      "priceFrom": true,
+      "image": "/images/etelek/prosciutto-crudo.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267077",
+      "slug": "quattro-carni",
+      "name": "Quattro carni",
+      "category": "pizzak",
+      "description": "paradicsomszósz, Fior di Latte mozzarella sajt, prosciutto cotto, pancetta, Napoli csemegeszalámi, Nduja pikáns szalámikrém, bazsalikom",
+      "price": 4870,
+      "priceFrom": true,
+      "image": "/images/etelek/quattro-carni.jpg",
+      "popular": true,
+      "signature": false
+    },
+    {
+      "id": "26267078",
+      "slug": "burrata",
+      "name": "Burrata",
+      "category": "pizzak",
+      "description": "paradicsomszósz, Grana Padano parmezán sajt, fűszeres sárga és piros datolyaparadicsom, burrata sajt, bazsalikom, olívaolaj",
+      "price": 4890,
+      "priceFrom": true,
+      "image": "/images/etelek/burrata.jpg",
+      "popular": false,
+      "signature": true
+    },
+    {
+      "id": "26267079",
+      "slug": "enzo",
+      "name": "Enzo",
+      "category": "pizzak",
+      "description": "paradicsomszósz, Fior di Latte mozzarella sajt, fűszeres datolyaparadicsom, bivaly mozzarella sajt, prosciutto crudo, grillezett paprika, grillezett cukkini, rukkola, parmezánpehely, olívaolaj",
+      "price": 4800,
+      "priceFrom": true,
+      "image": "/images/etelek/enzo.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267080",
+      "slug": "oro-di-napoli",
+      "name": "Oro di Napoli",
+      "category": "pizzak",
+      "description": "sárga paradicsomszósz, Fior di Latte mozzarella sajt, pancetta, sárga és piros fűszeres datolyaparadicsom, rukkola, bivaly mozarella sajt",
+      "price": 5190,
+      "priceFrom": true,
+      "image": "/images/etelek/oro-di-napoli.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267081",
+      "slug": "focaccia-rozmaring",
+      "name": "Rozmaringos focaccia",
+      "category": "pizzak",
+      "description": "olasz kenyér, rozmaring, olívaolaj",
+      "price": 1890,
+      "priceFrom": true,
+      "image": "/images/etelek/focaccia-rozmaring.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267082",
+      "slug": "focaccia-fokhagyma",
+      "name": "Fokhagymás focaccia",
+      "category": "pizzak",
+      "description": "olasz kenyér, fokhagymás olívaolaj, oregánó",
+      "price": 1890,
+      "priceFrom": true,
+      "image": "/images/etelek/focaccia-fokhagyma.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267107",
+      "slug": "antipasto-di-enzo",
+      "name": "Antipasto di Enzo",
+      "category": "eloetelek",
+      "description": "prosciutto cotto, prosciutto crudo, mozzarella di bufala, Napoli csemegeszalámi, rukkola, fűszeres datolyaparadicsom, olívabogyó, articsóka, focaccia",
+      "price": 6590,
+      "priceFrom": false,
+      "image": null,
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267083",
+      "slug": "insalata-mista",
+      "name": "Insalata mista",
+      "category": "salatak",
+      "description": "salátalevél, fűszeres koktélparadicsom, lila hagyma, olívabogyó, parmezánpehely, bazsalikom, olívaolaj",
+      "price": 2500,
+      "priceFrom": false,
+      "image": "/images/etelek/insalata-mista.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267084",
+      "slug": "insalata-di-tonno",
+      "name": "Insalata di tonno",
+      "category": "salatak",
+      "description": "salátalevél, fűszeres koktélparadicsom, tonhaltörzs, lila hagyma, olívabogyó, citrusolaj",
+      "price": 3190,
+      "priceFrom": false,
+      "image": "/images/etelek/insalata-di-tonno.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267085",
+      "slug": "insalata-di-enzo",
+      "name": "Insalata di Enzo",
+      "category": "salatak",
+      "description": "rukkola, salátalevél, fűszeres piros és sárga datolya paradicsom, grillezett cukkini, grillezett paprika, pármai sonka, burrata sajt, bazsalikom, olívaolaj",
+      "price": 4290,
+      "priceFrom": false,
+      "image": "/images/etelek/insalata-di-enzo.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267086",
+      "slug": "tiramisu-classico",
+      "name": "Tiramisu classico",
+      "category": "desszertek",
+      "description": "Klasszikus olasz tiramisu, 120 g.",
+      "price": 2490,
+      "priceFrom": false,
+      "image": "/images/etelek/tiramisu-classico.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267089",
+      "slug": "riccottas-kortetorta",
+      "name": "Riccottás körtetorta",
+      "category": "desszertek",
+      "description": "Ricottás körtetorta, 120 g.",
+      "price": 2190,
+      "priceFrom": false,
+      "image": "/images/etelek/riccottas-kortetorta.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267090",
+      "slug": "aranciata",
+      "name": "Aranciata narancslé",
+      "category": "uditok",
+      "description": "Olasz narancslé, 275 ml.",
+      "price": 1090,
+      "priceFrom": false,
+      "image": "/images/etelek/aranciata.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267091",
+      "slug": "aranciata-rossa",
+      "name": "Aranciata Rossa vérnarancs szóda",
+      "category": "uditok",
+      "description": "Vérnarancs kivonatos szóda, 275 ml.",
+      "price": 1090,
+      "priceFrom": false,
+      "image": "/images/etelek/aranciata-rossa.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267092",
+      "slug": "limonata",
+      "name": "Limonata limonádé",
+      "category": "uditok",
+      "description": "Citromos limonádé, 275 ml.",
+      "price": 1090,
+      "priceFrom": false,
+      "image": "/images/etelek/limonata.jpg",
+      "popular": false,
+      "signature": false
+    },
+    {
+      "id": "26267093",
+      "slug": "mandarino-verde",
+      "name": "Mandarino Verde zöld mandarinlé",
+      "category": "uditok",
+      "description": "Zöld mandarinlé, 275 ml.",
+      "price": 1090,
+      "priceFrom": false,
+      "image": "/images/etelek/mandarino-verde.jpg",
+      "popular": false,
+      "signature": false
+    }
+  ],
+  "contact": {
+    "street": "Kossuth tér 16.",
+    "postalCode": "3000",
+    "city": "Hatvan",
+    "country": "Magyarország",
+    "latitude": 47.6667312,
+    "longitude": 19.6824158,
+    "phoneDisplay": "+36 20 932 3270",
+    "phoneHref": "tel:+36209323270",
+    "hours": [
+      {
+        "day": "Hétfő",
+        "dayShort": "H",
+        "opens": null,
+        "closes": null,
+        "schemaDay": "Monday"
+      },
+      {
+        "day": "Kedd",
+        "dayShort": "K",
+        "opens": "11:00",
+        "closes": "22:00",
+        "schemaDay": "Tuesday"
+      },
+      {
+        "day": "Szerda",
+        "dayShort": "Sze",
+        "opens": "11:00",
+        "closes": "22:00",
+        "schemaDay": "Wednesday"
+      },
+      {
+        "day": "Csütörtök",
+        "dayShort": "Cs",
+        "opens": "11:00",
+        "closes": "22:00",
+        "schemaDay": "Thursday"
+      },
+      {
+        "day": "Péntek",
+        "dayShort": "P",
+        "opens": "11:00",
+        "closes": "22:00",
+        "schemaDay": "Friday"
+      },
+      {
+        "day": "Szombat",
+        "dayShort": "Szo",
+        "opens": "11:00",
+        "closes": "22:00",
+        "schemaDay": "Saturday"
+      },
+      {
+        "day": "Vasárnap",
+        "dayShort": "V",
+        "opens": "11:00",
+        "closes": "22:00",
+        "schemaDay": "Sunday"
+      }
+    ],
+    "deliveryHoursNote": "A Foodora kiszállítás kedd–vasárnap 11:00–20:30 között él.",
+    "services": [
+      "Fogyasztás helyben",
+      "Elvitel",
+      "Szabadtéri ülőhelyek",
+      "Házhozszállítás"
+    ],
+    "foodoraUrl": "https://www.foodora.hu/restaurant/tclu/enzo-di-napoli",
+    "facebookUrl": "https://www.facebook.com/profile.php?id=61566147444470",
+    "instagramUrl": "https://www.instagram.com/enzo_di_napoli_hatvan/",
+    "turulUrl": "https://www.gasztronomiaturul.eu/profile-140459-enzo-di-napoli"
+  },
+  "company": {
+    "legalName": "",
+    "seat": "",
+    "registrationNumber": "",
+    "taxNumber": "12345678-2-10",
+    "registeringCourt": "",
+    "representative": "",
+    "email": "",
+    "hostingProvider": "",
+    "hostingLogRetention": "",
+    "conciliationBoard": "",
+    "securityContact": ""
+  },
+  "legal": {
+    "impresszum": {
+      "title": "Impresszum",
+      "lede": "",
+      "updated": "2026. augusztus 15.",
+      "body": "## A szolgáltató adatai\n\n- Étterem neve: {{restaurant.name}}\n- Üzlet címe: {{contact.address}}\n- Telefon: {{contact.phone}}\n- Cégnév: {{company.legalName}}\n- Székhely: {{company.seat}}\n- Cégjegyzékszám: {{company.registrationNumber}}\n- Adószám: {{company.taxNumber}}\n- Nyilvántartó bíróság: {{company.registeringCourt}}\n- Képviselő: {{company.representative}}\n- E-mail: {{company.email}}\n\n## Tárhelyszolgáltató\n\n{{company.hostingProvider}}\n\n## Panaszkezelés és jogorvoslat\n\nPanaszával elsősorban közvetlenül az étteremhez fordulhat a fenti elérhetőségeken. Amennyiben a panasz kezelésével nem ért egyet, fogyasztóként a lakóhelye szerint illetékes békéltető testülethez, illetve a területileg illetékes kormányhivatal fogyasztóvédelmi feladatkörében eljáró szervéhez fordulhat.\n\nAz étterem székhelye szerint illetékes békéltető testület: {{company.conciliationBoard}}\n\n## Ételrendelés\n\nEz a weboldal nem fogad ételrendelést, és nem kezel fizetést. A házhozszállítást és az online rendelést a foodora (Delivery Hero) platformja biztosítja, saját szerződési feltételei szerint. A platformon leadott rendelésekre a foodora feltételei irányadóak.\n\n## Szerzői jog\n\nA weboldalon megjelenő szövegek, arculati elemek és fényképek szerzői jogi védelem alatt állnak. Felhasználásuk kizárólag az üzemeltető előzetes hozzájárulásával lehetséges.",
+      "draft": true
+    },
+    "adatkezeles": {
+      "title": "Adatkezelési tájékoztató",
+      "lede": "Ez a weboldal bemutató jellegű: nem fogad rendelést, nem kezel fizetést, és nem tart fenn felhasználói fiókokat.",
+      "updated": "2026. augusztus 15.",
+      "body": "## 1. Az adatkezelő\n\n- Az adatkezelő megnevezése: {{company.legalName}}\n- Székhely: {{company.seat}}\n- Üzlet: {{restaurant.name}} — {{contact.address}}\n- Telefon: {{contact.phone}}\n- E-mail: {{company.email}}\n\nAz adatkezelő adatvédelmi tisztviselőt nem nevezett ki, mivel az adatkezelés jellege és mértéke ezt nem teszi kötelezővé.\n\n## 2. Mire terjed ki ez a tájékoztató\n\nEz a tájékoztató a weboldal használatához kapcsolódó adatkezelésre vonatkozik. **Nem terjed ki** a foodora platformon leadott rendelésekre, a Google Térkép szolgáltatásra, illetve a közösségimédia-oldalainkra — ezek önálló adatkezelők, saját tájékoztatóval.\n\n## 3. Milyen adatokat kezelünk\n\n### 3.1. Adatvédelmi döntés\n\nAz adatvédelmi választását és annak időpontját a böngészője helyi tárolójában (`localStorage`) őrizzük meg. Ez az adat nem kerül el a böngészőjéből, nem jut el hozzánk, és nem alkalmas az Ön azonosítására.\n\n- **Jogalap:** jogos érdek (GDPR 6. cikk (1) f)), illetve az elektronikus hírközlési szabályok szerinti feltétlenül szükséges tárolás — a hozzájárulás nyilvántartása maga is kötelezettségünk.\n- **Időtartam:** az Ön általi törlésig vagy visszavonásig.\n\n### 3.2. Szervernaplók\n\nA weboldalt kiszolgáló tárhelyszolgáltató a működés biztonsága érdekében technikai naplóállományokat vezethet (IP-cím, időbélyeg, lekért útvonal, böngészőazonosító).\n\n- **Jogalap:** jogos érdek (GDPR 6. cikk (1) f)) — üzembiztonság és visszaélések megelőzése.\n- **Időtartam:** {{company.hostingLogRetention}}\n\n### 3.3. Beágyazott térkép\n\nHa hozzájárul a külső tartalom betöltéséhez, a Google Térkép beágyazása betöltődik, és a Google LLC megismerheti az IP-címét, valamint sütiket helyezhet el. Hozzájárulás nélkül a térkép nem töltődik be, és a Google felé semmilyen kérés nem indul.\n\n- **Jogalap:** az Ön hozzájárulása (GDPR 6. cikk (1) a)), amely bármikor visszavonható.\n- **Címzett:** Google Ireland Ltd. / Google LLC. Az adattovábbítás harmadik országba is irányulhat, a Google által alkalmazott garanciák mellett.\n\n### 3.4. Telefonos megkeresés\n\nHa telefonon keres minket asztalfoglalás vagy kérdés céljából, a beszélgetés során közölt adatokat kizárólag a megkeresés teljesítéséhez használjuk fel. Hívásokat nem rögzítünk.\n\n## 4. Amit nem teszünk\n\n- Nem futtatunk analitikai vagy hirdetési nyomkövetőt.\n- Nem készítünk profilt, és nem hozunk automatizált döntést.\n- Nem kezelünk különleges személyes adatot.\n- Nem értékesítjük és nem adjuk át adatait harmadik félnek marketing céljából.\n- Ezen a weboldalon nincs regisztráció, hírlevél és fizetés.\n\n## 5. Ételrendelés a foodorán\n\nA weboldal rendelési gombjai a foodora platformjára vezetnek. A rendelés leadásakor Ön a foodora üzemeltetőjével kerül kapcsolatba, aki önálló adatkezelőként jár el; a megadott adatait a saját adatvédelmi tájékoztatója szerint kezeli. Az étterem a rendelés teljesítéséhez szükséges adatokat kapja meg a platformtól.\n\n## 6. Adatfeldolgozók\n\nTárhelyszolgáltató: {{company.hostingProvider}}\n\n## 7. Az Ön jogai\n\nAz irányadó jogszabályok szerint Önt megilleti:\n\n- a tájékoztatáshoz és a hozzáféréshez való jog,\n- a helyesbítéshez való jog,\n- a törléshez való jog,\n- az adatkezelés korlátozásához való jog,\n- az adathordozhatósághoz való jog,\n- a tiltakozáshoz való jog a jogos érdeken alapuló adatkezelés ellen,\n- a hozzájárulás bármikori visszavonásának joga.\n\nKérelmét a fenti elérhetőségeken juttathatja el hozzánk. A kérelmet legkésőbb egy hónapon belül megválaszoljuk.\n\n## 8. Jogorvoslat\n\nHa úgy véli, hogy adatkezelésünk jogsértő, panaszt tehet a Nemzeti Adatvédelmi és Információszabadság Hatóságnál (NAIH — 1055 Budapest, Falk Miksa utca 9–11., [naih.hu](https://naih.hu)), illetve bírósághoz fordulhat.\n\n## 9. A tájékoztató módosítása\n\nA tájékoztatót a szolgáltatás vagy a jogszabályi környezet változása esetén módosíthatjuk. A mindenkor hatályos változat ezen az oldalon érhető el, a frissítés dátumával.",
+      "draft": true
+    },
+    "cookie": {
+      "title": "Cookie tájékoztató",
+      "lede": "Ez az oldal a lehető legkevesebb tárolást használja, és semmilyen külső szolgáltatást nem tölt be az Ön hozzájárulása nélkül.",
+      "updated": "2026. augusztus 15.",
+      "body": "## Röviden\n\nEz a weboldal **nem használ marketing- vagy nyomkövető sütiket**, és nem futtat analitikai szolgáltatást. Mindössze két dolgot érdemes tudni:\n\n- A böngészője helyi tárolójában (`localStorage`) eltároljuk az adatvédelmi döntését, hogy ne kelljen minden látogatáskor újra megválaszolnia.\n- A Megközelítés oldalon található Google Térkép külső szolgáltatás, amely saját sütiket helyezhet el. Ezt **csak akkor töltjük be, ha Ön ehhez hozzájárul**.\n\n## Részletesen\n\n### Szükséges tárolás\n\n`enzo-consent` — Az Ön adatvédelmi döntését és annak időpontját tárolja. A böngészőjének helyi tárolójában marad, nem kerül elküldésre a szerverre, és nem alkalmas az Ön azonosítására vagy nyomon követésére. Törléséig, illetve a beállítások visszavonásáig marad meg.\n\n### Külső tartalom — választható\n\nGoogle Maps beágyazás — A Megközelítés oldalon és a főoldal térképblokkjában található beágyazott térképet a Google LLC szolgáltatja. Betöltésekor a Google sütiket helyezhet el, és megismerheti az Ön IP-címét. A térkép **alapértelmezetten nem töltődik be**: a helyén a cím, a koordináták és egy külső útvonaltervező hivatkozás jelenik meg, amely elhagyja ezt az oldalt. A Google adatkezeléséről a [Google adatvédelmi irányelveiben](https://policies.google.com/privacy) tájékozódhat.\n\n### Amit nem használunk\n\nA weboldal jelenleg nem futtat analitikai, hirdetési vagy közösségimédia-nyomkövető szolgáltatást. Amennyiben ez a jövőben megváltozik, a hozzájárulási felület új kategóriával bővül, és a korábbi döntéseket újra megkérdezzük.\n\n## Hozzájárulás módosítása vagy visszavonása\n\nDöntését bármikor megváltoztathatja. A visszavonás azonnal hatályba lép: a térkép beágyazása a következő megjelenítéskor már nem töltődik be. A lap alján található „Cookie beállítások” hivatkozással bármikor újra előhívhatja a kérdést.\n\nA már elhelyezett sütiket a böngészője beállításaiban tudja törölni. Az adatkezelés részleteiről az [adatkezelési tájékoztatóban](/adatkezelesi-tajekoztato) olvashat.\n\n## Kapcsolat\n\nSütikkel kapcsolatos kérdés esetén az üzemeltető elérhetősége: {{company.email}}",
+      "draft": true
+    },
+    "feltetelek": {
+      "title": "Felhasználási feltételek",
+      "lede": "Ez az oldal bemutató jellegű. Rendelést nem fogad, fizetést nem kezel, és szerződés nem jön létre rajta keresztül.",
+      "updated": "2026. augusztus 15.",
+      "body": "## 1. Az oldal célja\n\nEz a(z) {{restaurant.name}} ({{contact.address}}) bemutatkozó weboldala. Célja, hogy tájékoztatást adjon az étteremről, az étlapról, a nyitvatartásról és a megközelítésről.\n\nA weboldal **nem webáruház**: nem lehet rajta rendelést leadni, asztalt foglalni vagy fizetni, és a használatával az üzemeltető és a látogató között nem jön létre szerződés.\n\n## 2. Rendelés és asztalfoglalás\n\nA weboldal rendelési gombjai a foodora platformjára irányítanak. Az ott leadott rendelésekre a foodora mindenkori szerződési feltételei és adatkezelési tájékoztatója vonatkoznak; a rendelési folyamatra, a szállítási díjakra, a fizetésre és az elállási jogra az üzemeltetőnek ezen a weboldalon nincs ráhatása.\n\nAsztalfoglalás telefonon lehetséges: {{contact.phone}}\n\n## 3. Étlap és árak\n\nAz étlapon szereplő tételek és árak tájékoztató jellegűek, és a foodorán közzétett aktuális kínálatot tükrözik a frissítés időpontjában. A pizzáknál feltüntetett árak **minimumárak**: feláras feltétekkel az ár magasabb lehet. Az étteremben és a foodorán érvényes mindenkori ár az irányadó.\n\nAz árváltoztatás jogát fenntartjuk. A weboldalon szereplő ár nem minősül ajánlattételnek.\n\n## 4. Allergének és ételérzékenység\n\nA weboldal nem tartalmaz allergéninformációt. Ételallergia vagy -érzékenység esetén kérjük, rendelés vagy fogyasztás előtt egyeztessen munkatársainkkal telefonon vagy az étteremben.\n\n## 5. Szellemi tulajdon\n\nA weboldalon megjelenő szövegek, arculati elemek, logó és fényképek szerzői jogi védelem alatt állnak, és az üzemeltető, illetve a jogosultak tulajdonát képezik. Bármilyen felhasználásuk — másolás, többszörözés, közzététel, átdolgozás — kizárólag előzetes írásbeli hozzájárulással lehetséges.\n\n## 6. Külső hivatkozások\n\nA weboldal külső szolgáltatásokra mutató hivatkozásokat tartalmaz (foodora, Google Térkép, közösségi oldalak, Turul Gasztronómia). Ezek tartalmáért, elérhetőségéért és adatkezeléséért az üzemeltető nem felel.\n\n## 7. Felelősség\n\nAz üzemeltető törekszik a weboldalon közölt adatok pontosságára és naprakészségére, de nem vállal felelősséget az esetleges elírásokért, illetve azért, ha a nyitvatartás, a kínálat vagy az ár időközben megváltozik. Kérjük, hosszabb út előtt telefonon erősítse meg a nyitvatartást.\n\nAz üzemeltető nem felel a weboldal esetleges üzemszüneteiből vagy hibáiból eredő károkért, a jogszabály által kötelezően előírt felelősség kivételével.\n\n## 8. Adatkezelés\n\nA weboldal adatkezelési gyakorlatáról az [adatkezelési tájékoztató](/adatkezelesi-tajekoztato), a sütikről és a külső tartalmakról a [cookie tájékoztató](/cookie-tajekoztato) ad felvilágosítást.\n\n## 9. Módosítás és irányadó jog\n\nA jelen feltételeket az üzemeltető bármikor módosíthatja; a mindenkor hatályos szöveg ezen az oldalon érhető el, a frissítés dátumával. A weboldal használatára a magyar jog az irányadó.\n\n## 10. Üzemeltető\n\nAz üzemeltető azonosító adatai és elérhetősége az [impresszumban](/impresszum) találhatók. Kapcsolat: {{company.email}}",
+      "draft": true
+    }
+  }
+}

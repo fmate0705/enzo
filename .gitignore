@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+.env
+.env.local
+*.tsbuildinfo
+next-env.d.ts
+# Local compose overlay. Named so Compose does NOT auto-merge it — see the note
+# in compose.local.yml. Ignored as well as renamed, but the rename is what
+# actually protects the deploy: this project is not a git repository, so nothing
+# consults this file when the directory is copied to a server.
+compose.local.yml

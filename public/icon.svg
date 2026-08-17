@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Enzo di Napoli">
+  <!--
+    A typographic mark, consistent with the wordmark used across the site.
+
+    It is not a redraw of the restaurant's flame logo: reproducing a brand mark
+    by hand would be inventing a brand asset. This is the same letterform the
+    header already sets, in the brand's brass on the brand's ground, so it reads
+    as the same identity at 16px where the real logo would be an unreadable
+    smudge.
+  -->
+  <rect width="64" height="64" fill="#1B191A" />
+  <circle cx="32" cy="32" r="25" fill="none" stroke="#CCBE86" stroke-width="1.5" />
+  <text
+    x="32"
+    y="32"
+    fill="#CCBE86"
+    font-family="Bodoni MT, Bodoni Moda, Didot, Georgia, serif"
+    font-size="34"
+    font-weight="500"
+    text-anchor="middle"
+    dominant-baseline="central"
+  >E</text>
+</svg>

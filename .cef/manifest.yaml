@@ -1,0 +1,91 @@
+frameworkVersion: 2
+project:
+  name: enzo-di-napoli
+  type: marketing
+  created: 2026-08-15T18:32:34.525Z
+  cefVersion: 0.1.0
+engines:
+  - accessibility
+  - ai-seo
+  - architecture
+  - components
+  - core
+  - deployment
+  - design
+  - docker
+  - experience
+  - legal
+  - motion
+  - performance
+  - platform
+  - security
+  - seo
+  - validation
+skills:
+  - emil-frontend-design
+  - emil-motion
+  - frontend-design
+  - taste
+  - uiux-pro-max
+mcp:
+  - chrome-devtools
+  - higgsfield
+metadata:
+  description: >-
+    Enzo di Napoli is an authentic Neapolitan pizzeria, restaurant and cafe in
+    Hatvan, Hungary. A hospitality venue serving wood-fired Neapolitan pizza from
+    an AVPN-certified MP Forni oven, fresh Italian ingredients, traditional
+    recipes, salads and desserts. The website presents the restaurant menu, the
+    story, a photo gallery and how to find the venue. Table booking is by phone;
+    food ordering and delivery are handled by the external Foodora platform.
+  framework: nextjs
+  designPreset: luxury
+  language: typescript
+  packageManager: pnpm
+  styling: tailwind
+  uiLibrary: shadcn
+  animation: framer-motion
+  database: none
+  orm: none
+  authentication: none
+  cms: none
+docker:
+  enabled: true
+  port: 3000
+features:
+  adminPanel: false
+  blog: false
+  commerce: false
+  legalPages: true
+  aiSeo: true
+  githubActions: true
+deployment:
+  target: vercel
+languages:
+  primary: hu
+  additional: []
+  country: HU
+generatedFiles:
+  - .cef/manifest.yaml
+  - .cef/memory.md
+  - .cef/project.json
+  - .cef/runtime.json
+  - .editorconfig
+  - .env
+  - .env.example
+  - .github/workflows/ci.yml
+  - .gitignore
+  - .prettierignore
+  - .prettierrc.json
+  - CLAUDE.md
+  - Dockerfile
+  - README.md
+  - content/legal/cookie-policy.md
+  - content/legal/impressum.md
+  - content/legal/privacy-policy.md
+  - content/legal/terms.md
+  - docker-compose.yml
+  - eslint.config.js
+  - package.json
+  - public/llms.txt
+  - tsconfig.json

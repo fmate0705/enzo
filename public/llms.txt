@@ -1,0 +1,48 @@
+# Enzo di Napoli
+
+> Autentikus nápolyi pizzéria és olasz étterem Hatvanban. A pizza AVPN
+> minősítésű MP Forni kemencében sül, olasz alapanyagokból, hagyományos
+> receptek szerint.
+
+## Alapadatok
+
+- Cím: Kossuth tér 16., 3000 Hatvan, Magyarország
+- Telefon: +36 20 932 3270
+- Nyitvatartás: kedd–vasárnap 11:00–22:00, hétfőn zárva
+- Szolgáltatások: helyben fogyasztás, elvitel, szabadtéri ülőhelyek, házhozszállítás
+- Konyha: nápolyi pizza, olasz
+- Nyitás: 2024. október
+
+## Rendelés
+
+Ez a weboldal nem fogad rendelést. A házhozszállítást és az online rendelést a
+foodora kezeli: https://www.foodora.hu/restaurant/tclu/enzo-di-napoli
+Asztalfoglalás telefonon.
+
+## Elismerések
+
+- Turul Gasztronómia 2026 — arany fokozat, Projekt díjazottja
+- Turul Gasztronómia 2025 — arany fokozat, Projekt díjazottja
+- Turul Gasztronómia értékelés: 9,7 / 10 (413 értékelés)
+- foodora értékelés: 4,9 / 5 (335 értékelés)
+
+## Oldalak
+
+- https://enzodinapoli.hu/ — Főoldal
+- https://enzodinapoli.hu/etlap — Teljes étlap árakkal
+- https://enzodinapoli.hu/tortenet — Az étterem és a kemence
+- https://enzodinapoli.hu/galeria — Fotók
+- https://enzodinapoli.hu/megkozelites — Cím, nyitvatartás, útvonal
+- https://enzodinapoli.hu/impresszum — Impresszum
+- https://enzodinapoli.hu/adatkezelesi-tajekoztato — Adatkezelés
+- https://enzodinapoli.hu/cookie-tajekoztato — Sütik
+- https://enzodinapoli.hu/felhasznalasi-feltetelek — Felhasználási feltételek
+
+Az egyes fogások saját oldalon is elérhetők: /etlap/<slug>, például
+https://enzodinapoli.hu/etlap/margherita
+
+## Megjegyzés a tartalomról
+
+Az oldalon szereplő étel- és étteremfotók a pizzéria sajátjai. Az étlap adatai a
+foodora aktuális listájából származnak. Az oldal nem közöl allergéninformációt —
+ezzel kapcsolatban az éttermet kell megkeresni telefonon.

@@ -1,0 +1,1074 @@
+/*
+ * Enzo di Napoli — brand layer.
+ *
+ * Imported AFTER app/globals.css so CEF can regenerate its tokens without losing
+ * brand decisions. This file only redefines semantic tokens; it never introduces a
+ * parallel styling system.
+ *
+ * Two deliberate deviations from the CEF `luxury` preset are recorded here and in
+ * .cef/memory/decisions.md:
+ *
+ * 1. Type scale. The preset's goldenRatio scale resolves text-xs to 0.382rem (~6px)
+ *    and text-7xl to 46.971rem (~751px). The first fails WCAG 2.2 readability, the
+ *    second is unusable at any viewport. Replaced with a fluid modular scale.
+ * 2. Colour scheme. The site ships one scheme — the brand is dark. The light
+ *    scheme is redefined to the dark values rather than removed, so a visitor whose
+ *    OS or the CEF theme script asks for light still gets the designed, contrast-
+ *    checked surface instead of unstyled defaults.
+ */
+
+:root,
+:root[data-theme='light'],
+:root[data-theme='dark'] {
+  /* ---- Surfaces ------------------------------------------------------------
+   * #1B191A is a warm near-black: a charcoal with red in it, not a neutral grey.
+   * Surfaces step up in lightness only, keeping the same warmth.
+   */
+  --cef-background-rgb: 27 25 26; /* #1B191A — the brand ground */
+  --cef-background: rgb(var(--cef-background-rgb));
+  --cef-surface-rgb: 35 32 33; /* #232021 */
+  --cef-surface: rgb(var(--cef-surface-rgb));
+  --cef-surface-raised-rgb: 45 41 42; /* #2D292A */
+  --cef-surface-raised: rgb(var(--cef-surface-raised-rgb));
+
+  /* ---- Text ----------------------------------------------------------------
+   * Contrast against #1B191A, measured:
+   *   foreground #F2EDE4 → 14.9:1  (AAA)
+   *   muted      #A69C90 →  6.4:1  (AA, and AAA for large text)
+   *   primary    #CCBE86 →  9.4:1  (AAA)
+   */
+  --cef-foreground-rgb: 242 237 228; /* #F2EDE4 — warm off-white, not pure white */
+  --cef-foreground: rgb(var(--cef-foreground-rgb));
+  --cef-muted-rgb: 166 156 144; /* #A69C90 */
+  --cef-muted: rgb(var(--cef-muted-rgb));
+  --cef-border-rgb: 58 52 50; /* #3A3432 */
+  --cef-border: rgb(var(--cef-border-rgb));
+
+  /* ---- Accent --------------------------------------------------------------
+   * #CCBE86 is the aged brass of the signage and of the oven's own tiling.
+   * It is the only accent; it carries every emphasis the site makes.
+   */
+  --cef-primary-rgb: 204 190 134; /* #CCBE86 */
+  --cef-primary: rgb(var(--cef-primary-rgb));
+  --cef-primary-foreground-rgb: 27 25 26;
+  --cef-primary-foreground: rgb(var(--cef-primary-foreground-rgb));
+  --cef-accent-rgb: 204 190 134;
+  --cef-accent: rgb(var(--cef-accent-rgb));
+  --cef-accent-foreground-rgb: 27 25 26;
+  --cef-accent-foreground: rgb(var(--cef-accent-foreground-rgb));
+  --cef-focus-rgb: 204 190 134;
+  --cef-focus: rgb(var(--cef-focus-rgb));
+
+  /* Status colours, warmed so they belong to the same palette. */
+  --cef-success-rgb: 138 168 118;
+  --cef-success: rgb(var(--cef-success-rgb));
+  --cef-warning-rgb: 214 164 84;
+  --cef-warning: rgb(var(--cef-warning-rgb));
+  --cef-danger-rgb: 208 106 86;
+  --cef-danger: rgb(var(--cef-danger-rgb));
+  --cef-info-rgb: 166 156 144;
+  --cef-info: rgb(var(--cef-info-rgb));
+
+  /* ---- Ember ---------------------------------------------------------------
+   * Heat cannot be drawn in brass alone — it reads as metal, not fire. One deep
+   * ember tone exists for the oven glow and is used nowhere else, never above
+   * 40% opacity, and never as a text or border colour.
+   */
+  --enzo-ember-rgb: 168 96 38; /* #A86026 */
+  --enzo-ember: rgb(var(--enzo-ember-rgb));
+
+  /* ---- Type ----------------------------------------------------------------
+   * Fluid modular scale. Display sizes use clamp() so the editorial headlines
+   * stay proportionate from 320px to ultrawide without breakpoint jumps.
+   */
+  --cef-font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --cef-font-serif: var(--font-bodoni), ui-serif, Georgia, serif;
+
+  --cef-text-xs: 0.75rem;
+  --cef-leading-xs: 1.5;
+  --cef-text-sm: 0.8125rem;
+  --cef-leading-sm: 1.55;
+  --cef-text-base: 1rem;
+  --cef-leading-base: 1.65;
+  --cef-text-lg: 1.125rem;
+  --cef-leading-lg: 1.6;
+  --cef-text-xl: 1.375rem;
+  --cef-leading-xl: 1.45;
+  /*
+   * Display sizes are clamped at both ends. The lower bounds are set from the
+   * longest headline the site actually uses, measured at 320px: at a 3rem
+   * minimum the hero wrapped to five lines inside a 272px column instead of the
+   * three it is composed as. Every minimum below keeps its headline within its
+   * intended line count on the narrowest supported viewport.
+   */
+  --cef-text-2xl: clamp(1.5rem, 1.2rem + 1.35vw, 2.25rem);
+  --cef-leading-2xl: 1.25;
+  --cef-text-3xl: clamp(1.75rem, 1.35rem + 1.9vw, 3rem);
+  --cef-leading-3xl: 1.18;
+  --cef-text-4xl: clamp(2rem, 1.5rem + 2.6vw, 4rem);
+  --cef-leading-4xl: 1.1;
+  --cef-text-5xl: clamp(2.25rem, 1.35rem + 4.5vw, 5.5rem);
+  --cef-leading-5xl: 1.04;
+  --cef-text-6xl: clamp(2.75rem, 1.2rem + 7.6vw, 7.5rem);
+  --cef-leading-6xl: 1;
+  --cef-text-7xl: clamp(3.25rem, 0.6rem + 11.5vw, 10rem);
+  --cef-leading-7xl: 0.94;
+
+  /* Shadows on a near-black ground read as depth only when they are near-opaque. */
+  --cef-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --cef-shadow-md: 0 8px 20px -6px rgb(0 0 0 / 0.55);
+  --cef-shadow-lg: 0 18px 40px -12px rgb(0 0 0 / 0.65);
+  --cef-shadow-xl: 0 30px 70px -20px rgb(0 0 0 / 0.7);
+  --cef-shadow-2xl: 0 45px 100px -30px rgb(0 0 0 / 0.8);
+}
+
+/* --------------------------------------------------------------------------
+ * Base
+ * -------------------------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+  /* The sticky menu category bar must not cover the heading it scrolls to. */
+  scroll-padding-top: 7.5rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--cef-font-sans);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(var(--cef-primary-rgb) / 0.28);
+  color: rgb(var(--cef-foreground-rgb));
+}
+
+/* One focus treatment for the whole site, on the accent, always visible. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid rgb(var(--cef-focus-rgb));
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* --------------------------------------------------------------------------
+ * Editorial display type
+ * -------------------------------------------------------------------------- */
+
+.font-display {
+  font-family: var(--cef-font-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  /* Bodoni's hairlines need optical sizing to survive at display sizes. */
+  font-optical-sizing: auto;
+}
+
+/* --------------------------------------------------------------------------
+ * Section atmosphere
+ *
+ * Drawn, not photographed. Every accent below is a CSS gradient over the page
+ * ground — no image request, nothing to generate, nothing to keep in sync with
+ * the brand, and it scales to any viewport without a second asset. Applied as
+ * `atmos atmos--<name>` on a Section.
+ *
+ * All of it stays inside the palette: the brass accent and the single ember
+ * tone, never above 12% opacity, so these read as light in a dark room rather
+ * than as decoration laid on top of the page.
+ * -------------------------------------------------------------------------- */
+
+.atmos {
+  position: relative;
+  isolation: isolate;
+}
+
+.atmos::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Heat rising from the lower edge — for sections that sit under the oven. */
+.atmos--ember::before {
+  background:
+    radial-gradient(70vw 26rem at 12% 108%, rgb(var(--enzo-ember-rgb) / 0.11), transparent 68%),
+    radial-gradient(40vw 18rem at 92% 6%, rgb(var(--cef-primary-rgb) / 0.05), transparent 70%);
+}
+
+/* A brass wash from the top-right — quieter, for editorial sections. */
+.atmos--brass::before {
+  background: radial-gradient(
+    58vw 30rem at 88% -6%,
+    rgb(var(--cef-primary-rgb) / 0.07),
+    transparent 66%
+  );
+}
+
+/* A centred pool of warmth, for full-width statements. */
+.atmos--pool::before {
+  background: radial-gradient(
+    62vw 24rem at 50% 50%,
+    rgb(var(--enzo-ember-rgb) / 0.07),
+    transparent 70%
+  );
+}
+
+/*
+ * A faint brass hairline grid. Reads as the ruling on an editorial page rather
+ * than as a "tech" grid: 1px lines at 6% on a near-black ground are almost
+ * subliminal, and the mask fades them out before they reach the section edges.
+ */
+.atmos--rule::before {
+  background-image:
+    linear-gradient(to right, rgb(var(--cef-primary-rgb) / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--cef-primary-rgb) / 0.045) 1px, transparent 1px);
+  background-size: 7.5rem 7.5rem;
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 45%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(70% 60% at 50% 45%, #000 30%, transparent 75%);
+}
+
+/* --------------------------------------------------------------------------
+ * Section motifs
+ *
+ * Three non-figurative line drawings — an engraved guilloche rosette, a fan of
+ * rising hairlines, and a loose diamond lattice — generated once through
+ * Higgsfield (Recraft vector, palette locked to the two brand colours) and
+ * shipped as SVG.
+ *
+ * Why they are cheap:
+ * - Vector, so one file covers every viewport and every DPR. Three motifs are
+ *   38 KB on the wire uncompressed, and they gzip hard because it is all path
+ *   data.
+ * - The generation was a one-off. Nothing calls an API at build or at runtime.
+ * - Both the C2PA provenance blob and the opaque charcoal ground plate were
+ *   stripped after generation, which took them from 158 KB to 38 KB and made
+ *   them transparent — so a motif can sit over any surface at any opacity
+ *   instead of needing one variant per background.
+ *
+ * They ride on ::after so a section can carry a gradient wash (::before) and a
+ * motif at the same time. Opacity stays low: this is meant to be noticed on the
+ * second look, not the first.
+ * -------------------------------------------------------------------------- */
+
+.atmos--engraved::after,
+.atmos--rise::after,
+.atmos--mesh::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-repeat: no-repeat;
+  /*
+   * The motifs are shipped exactly as generated, ground plate and all, and the
+   * ground is dropped here rather than by editing the files.
+   *
+   * Not a stylistic choice — cutting it out of the SVG is not safe. Charcoal is
+   * also a DRAWING colour in these motifs: the guilloche gets its engraved look
+   * from 254 charcoal shapes sitting between the brass arcs, and only one of
+   * its 255 charcoal paths is the background. Deleting by colour destroys the
+   * artwork.
+   *
+   * `lighten` keeps, per channel, whichever of the motif and the page is
+   * brighter. The ground is the page's own near-black, so it loses everywhere
+   * and vanishes; the brass linework wins and shows. It works unchanged over
+   * the base ground and over the lighter `bg-surface` sections, which a baked-in
+   * ground never could.
+   */
+  mix-blend-mode: lighten;
+  opacity: 0.4;
+}
+
+/*
+ * The anchors below follow where the ink actually sits inside each 2048x1170
+ * frame, measured off the files rather than assumed:
+ *
+ *   guilloche   ink x 38.6%..100%, full height   — already right-biased
+ *   heat-lines  ink x 13%..86.6%, y 18.3%..100%  — already bottom-anchored
+ *   lattice     ink x 7.4%..94.3%, full height   — centred, near edge to edge
+ *
+ * Each motif therefore gets the anchor its own composition already has. Adding
+ * a further push on top of that is double-counting: an earlier pass shifted the
+ * rosette another 20% right and drove most of it off the section.
+ */
+
+/* The rosette. Its ink runs to the right edge of its own frame, so aligning the
+   frames right is what makes it bleed. */
+.atmos--engraved::after {
+  background-image: url('/images/accents/guilloche.svg');
+  background-position: right center;
+  background-size: auto 155%;
+  -webkit-mask-image: linear-gradient(to left, #000 0%, transparent 68%);
+  mask-image: linear-gradient(to left, #000 0%, transparent 68%);
+}
+
+/* The rising hairlines. The 13% inset is in the artwork, so the frame sits flush
+   to the corner and the ink lands just inside it. */
+.atmos--rise::after {
+  background-image: url('/images/accents/heat-lines.svg');
+  background-position: left bottom;
+  background-size: 58% auto;
+  opacity: 0.45;
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 76%);
+  mask-image: linear-gradient(to top, #000 0%, transparent 76%);
+}
+
+/* The lattice, across the whole section and faded off at every edge. */
+.atmos--mesh::after {
+  background-image: url('/images/accents/lattice.svg');
+  background-position: center;
+  background-size: cover;
+  opacity: 0.3;
+  -webkit-mask-image: radial-gradient(80% 70% at 50% 50%, #000 15%, transparent 74%);
+  mask-image: radial-gradient(80% 70% at 50% 50%, #000 15%, transparent 74%);
+}
+
+/* On a phone the motifs compete with the content rather than sit behind it. */
+@media (max-width: 767px) {
+  .atmos--engraved::after,
+  .atmos--rise::after,
+  .atmos--mesh::after {
+    opacity: 0.24;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Legal prose
+ *
+ * Long-form documents get their own scoped type rules rather than a typography
+ * plugin — the site has exactly three such pages, and a dependency to style them
+ * would cost more than it saves.
+ * -------------------------------------------------------------------------- */
+
+.legal-prose {
+  color: rgb(var(--cef-muted-rgb));
+  line-height: 1.75;
+}
+
+.legal-prose h2 {
+  font-family: var(--cef-font-serif);
+  font-size: var(--cef-text-2xl);
+  line-height: 1.25;
+  color: rgb(var(--cef-foreground-rgb));
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.015em;
+}
+
+.legal-prose h3 {
+  font-family: var(--cef-font-serif);
+  font-size: var(--cef-text-xl);
+  color: rgb(var(--cef-foreground-rgb));
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.legal-prose p,
+.legal-prose ul,
+.legal-prose ol,
+.legal-prose dl {
+  margin-block: 1rem;
+}
+
+.legal-prose ul,
+.legal-prose ol {
+  padding-left: 1.25rem;
+}
+
+.legal-prose ul {
+  list-style: none;
+}
+
+.legal-prose ul > li {
+  position: relative;
+  padding-left: 1rem;
+  margin-block: 0.5rem;
+}
+
+.legal-prose ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.85em;
+  width: 5px;
+  height: 1px;
+  background: rgb(var(--cef-primary-rgb));
+}
+
+.legal-prose ol {
+  list-style: decimal;
+}
+
+.legal-prose ol > li {
+  margin-block: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.legal-prose dl {
+  display: grid;
+  gap: 0.25rem 1.5rem;
+  border-top: 1px solid rgb(var(--cef-border-rgb));
+  padding-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .legal-prose dl {
+    grid-template-columns: minmax(11rem, 15rem) 1fr;
+  }
+}
+
+.legal-prose dt {
+  color: rgb(var(--cef-foreground-rgb));
+  font-size: var(--cef-text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding-top: 0.75rem;
+}
+
+.legal-prose dd {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgb(var(--cef-border-rgb) / 0.6);
+}
+
+@media (min-width: 640px) {
+  .legal-prose dt {
+    border-bottom: 1px solid rgb(var(--cef-border-rgb) / 0.6);
+    padding-bottom: 0.75rem;
+  }
+}
+
+.legal-prose strong {
+  color: rgb(var(--cef-foreground-rgb));
+  font-weight: 500;
+}
+
+.legal-prose a {
+  color: rgb(var(--cef-primary-rgb));
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.legal-prose code {
+  font-family: var(--cef-font-mono);
+  font-size: 0.875em;
+  color: rgb(var(--cef-foreground-rgb));
+  background: rgb(var(--cef-surface-raised-rgb));
+  padding: 0.1em 0.4em;
+  border-radius: var(--cef-radius-sm);
+}
+
+.legal-prose .not-prose {
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+ * Texture
+ *
+ * A single tileable grain, drawn once as an inline SVG data URI, sits over the
+ * page ground. It removes the flat plastic look of a large solid dark field
+ * without adding a request or a gradient.
+ * -------------------------------------------------------------------------- */
+
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --------------------------------------------------------------------------
+ * Hairlines
+ *
+ * The brass rule that separates editorial blocks. Fades at both ends so it
+ * reads as a drawn line rather than a border box.
+ * -------------------------------------------------------------------------- */
+
+.rule-brass {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgb(var(--cef-primary-rgb) / 0.45),
+    transparent
+  );
+}
+
+/* --------------------------------------------------------------------------
+ * Motion
+ *
+ * Every animated property below is opacity or transform. Nothing here can
+ * trigger layout, so scrolling stays on the compositor.
+ *
+ * The hidden states are scoped to html.js. Without the one-line script that adds
+ * that class, nothing is ever hidden — content degrades to fully visible rather
+ * than to a blank page.
+ * -------------------------------------------------------------------------- */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity 700ms var(--cef-ease-decelerate),
+    transform 700ms var(--cef-ease-decelerate);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.js [data-reveal][data-revealed] {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* Words in a scroll statement lift from muted to foreground, one after another. */
+[data-statement] {
+  --statement-progress: 1;
+}
+
+[data-statement-word] {
+  color: rgb(
+    var(--cef-foreground-rgb) /
+      calc(
+        0.22 + 0.78 *
+          clamp(0, (var(--statement-progress) * (var(--word-count) + 4) - var(--word-index)) / 3, 1)
+      )
+  );
+  transition: color 320ms linear;
+}
+
+/* An accented word keeps the brass hue and only varies its presence. */
+[data-statement-word].text-primary {
+  color: rgb(
+    var(--cef-primary-rgb) /
+      calc(
+        0.22 + 0.78 *
+          clamp(0, (var(--statement-progress) * (var(--word-count) + 4) - var(--word-index)) / 3, 1)
+      )
+  );
+}
+
+/* --------------------------------------------------------------------------
+ * Navigation
+ *
+ * The label sits in a mask with a second copy stacked beneath it. On hover the
+ * pair slides up by exactly one line: the label leaves through the top as its
+ * twin arrives from below. It is one transform on one element.
+ * -------------------------------------------------------------------------- */
+
+.nav-link__mask {
+  /*
+   * The line box must clear the diacritics. Every label in this nav is accented
+   * uppercase — ÉTLAP, TÖRTÉNET, GALÉRIA, MEGKÖZELÍTÉS — and an acute or umlaut
+   * on a capital sits ABOVE the cap height. A 1em mask over a 1em line-height
+   * clips exactly at the em box and shears the tops off those marks, which is
+   * why the roll looked broken on some labels and clean on others. 1.5em gives
+   * the accents room inside the clip.
+   */
+  --nav-line: 1.5em;
+  display: block;
+  overflow: hidden;
+  /* Bounded height so the second copy is genuinely clipped, not merely stacked. */
+  height: var(--nav-line);
+}
+
+.nav-link__line {
+  display: block;
+  height: var(--nav-line);
+  line-height: var(--nav-line);
+  transition: transform 420ms var(--cef-ease-emphasized);
+  will-change: transform;
+}
+
+/*
+ * Travel is -100% of the line's own height rather than a hardcoded length, so
+ * the twin lands exactly where the original sat however --nav-line is tuned.
+ * A fixed 1em here would drift the moment the line box changed.
+ */
+.nav-link:hover .nav-link__line,
+.nav-link:focus-visible .nav-link__line {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link__line {
+    transition: none;
+  }
+
+  /* No roll at all: the twin would otherwise snap into place instantly, which
+     is a harsher effect than the animation it is meant to spare the visitor. */
+  .nav-link:hover .nav-link__line,
+  .nav-link:focus-visible .nav-link__line {
+    transform: none;
+  }
+}
+
+/* Mobile panel items arrive in sequence, briefly. */
+[data-mobile-panel] {
+  animation: panel-in 260ms var(--cef-ease-decelerate) both;
+}
+
+[data-mobile-item] {
+  animation: item-in 420ms var(--cef-ease-decelerate) both;
+  animation-delay: calc(60ms + var(--i) * 55ms);
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes item-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * The oven hero
+ *
+ * One driver: --p, set by components/home/oven-hero.tsx, running 0 → 1 across
+ * the section's scroll. The video's playhead is scrubbed from it in JS;
+ * everything below is derived from it in CSS. No JavaScript sets a style other
+ * than that single custom property.
+ *
+ * --p defaults to 1 so that if the script never runs the scene renders lit and
+ * settled rather than cold and half-composed.
+ * -------------------------------------------------------------------------- */
+
+[data-oven-hero] {
+  --p: 1;
+}
+
+/*
+ * The grade.
+ *
+ * Three stacked washes, in this order: a bottom-up ramp to the page ground so
+ * the section joins the one beneath it, a left-side ramp that gives the
+ * headline a dark bed to sit on, and a vignette. The left ramp *relaxes* as the
+ * fire builds — at --p 0 the frame is dim and the type needs less help; by
+ * --p 1 the oven is bright and the type needs more.
+ */
+[data-oven-grade] {
+  background:
+    linear-gradient(
+      to top,
+      rgb(var(--cef-background-rgb)) 0%,
+      rgb(var(--cef-background-rgb) / 0.55) 22%,
+      transparent 55%
+    ),
+    linear-gradient(
+      to right,
+      rgb(var(--cef-background-rgb) / calc(0.62 + 0.2 * var(--p))) 0%,
+      rgb(var(--cef-background-rgb) / calc(0.3 + 0.16 * var(--p))) 45%,
+      rgb(var(--cef-background-rgb) / 0.12) 100%
+    ),
+    radial-gradient(120% 90% at 50% 45%, transparent 40%, rgb(var(--cef-background-rgb) / 0.7) 100%);
+}
+
+/* The footage itself lifts slightly as it heats, and settles back at rest. */
+[data-oven-video],
+[data-oven-hero] img {
+  transform: scale(calc(1.05 - 0.05 * var(--p)));
+  transition: transform 120ms linear;
+}
+
+/*
+ * The headline.
+ *
+ * Both lines rise into place and the whole block eases away as the section
+ * hands over, so the type never fights the fire at full blaze. The second line
+ * trails the first, which is what makes the diagonal read as movement rather
+ * than as two things sliding together.
+ */
+[data-hero-copy] {
+  opacity: calc(1 - 0.55 * max(0, var(--p) - 0.55) / 0.45);
+  transform: translate3d(0, calc(-3vh * max(0, var(--p) - 0.4) / 0.6), 0);
+}
+
+[data-hero-line] {
+  animation: hero-line-in 1100ms var(--cef-ease-decelerate) both;
+}
+
+[data-hero-line='2'] {
+  animation-delay: 140ms;
+}
+
+[data-hero-actions] {
+  animation: hero-line-in 900ms var(--cef-ease-decelerate) 380ms both;
+}
+
+@keyframes hero-line-in {
+  from {
+    opacity: 0;
+    /* Clipped by the line box, so the words rise out of their own baseline. */
+    transform: translate3d(0, 0.42em, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* The hero headline is sized to fill the frame without wrapping its two lines. */
+[data-oven-hero] h1 {
+  font-size: clamp(2.5rem, 11vw, 4rem);
+  line-height: 0.98;
+}
+
+@media (min-width: 768px) {
+  [data-oven-hero] h1 {
+    font-size: clamp(3.5rem, 8.2vw, 9rem);
+  }
+}
+
+/* The scroll cue: a dot that falls down its rail, and the whole cue fades out
+   the moment the visitor takes the hint. */
+[data-hero-cue] {
+  opacity: calc(1 - var(--p) / 0.25);
+}
+
+[data-hero-cue-dot] {
+  animation: cue-fall 2.1s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* The wheel falls down the inside of the mouse body and fades before it would
+   reach the bottom edge. Distances are in px, not %, because the dot is an SVG
+   circle: a percentage transform would resolve against its own 5px box. */
+@keyframes cue-fall {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  62% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-oven-hero] {
+    --p: 1 !important;
+  }
+
+  [data-oven-video],
+  [data-oven-hero] img,
+  [data-hero-copy] {
+    transform: none;
+  }
+
+  [data-hero-line],
+  [data-hero-actions] {
+    animation: none;
+  }
+
+  [data-hero-cue-dot] {
+    animation: none;
+  }
+
+  [data-hero-cue] {
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * The pizza reel — one plate, turning
+ *
+ * The stage carries two properties, both written straight to the node by the
+ * scroll pass. Nothing here is recomputed by React.
+ *
+ *   --pos  position along the reel, in pizzas: 0 → 18. Accumulates, so the
+ *          rotation is continuous and the plate never snaps back between steps.
+ *   --t    progress within the current step, 0 → 1.
+ *
+ * The two images cross at the middle of the turn, where the plate is also at
+ * its smallest — the swap happens at the least readable moment of the rotation,
+ * so what the eye reports is one pizza becoming another.
+ * -------------------------------------------------------------------------- */
+
+/*
+ * The menu page's fixed chrome: the header band plus the sticky category rail.
+ * The reel parks directly underneath it rather than behind it, so the pizza,
+ * the selector and the page title are all on the first screen — no scrolling to
+ * reach the food.
+ */
+[data-pizza-reel] {
+  --menu-chrome: 9.5rem;
+  --stage-h: calc(100vh - var(--menu-chrome));
+}
+
+[data-pizza-stage] {
+  --pos: 0;
+  --t: 0;
+  top: var(--menu-chrome);
+  height: var(--stage-h);
+}
+
+/*
+ * Sized against the STAGE, never the viewport: `0.92` keeps the plate shorter
+ * than the space it sits in at every window size, so it can only ever leave the
+ * frame sideways. The 64vw arm is what makes it run off the right edge on a
+ * wide window; the stage-height arm is what stops it being cropped at the
+ * bottom on a short one.
+ */
+[data-pizza-plate] {
+  width: min(64vw, calc(var(--stage-h) * 0.92));
+  /* Pushed past the right edge; the stage clips it. */
+  margin-right: -7vw;
+}
+
+[data-pizza-plate] {
+  /* 0 at the ends of a step, 0.5 at the middle. Only the halo reads it now. */
+  --dip: min(var(--t), calc(1 - var(--t)));
+  /* Half a turn per pizza, and nothing else. The plate used to shrink through
+     the middle of the turn to help disguise the swap; the cross-fade carries it
+     on its own, and the scale just made the pizza look like it was retreating. */
+  transform: rotate(calc(var(--pos) * 180deg));
+  transition: transform 90ms linear;
+  will-change: transform;
+}
+
+[data-pizza-face] {
+  transition: opacity 90ms linear;
+}
+
+/* The outgoing plate holds until the turn is well underway, then goes. */
+[data-pizza-face='current'] {
+  opacity: clamp(0, calc((0.62 - var(--t)) / 0.24), 1);
+}
+
+[data-pizza-face='next'] {
+  opacity: clamp(0, calc((var(--t) - 0.38) / 0.24), 1);
+}
+
+/* Mounted only so the window has a spare either side; never shown. */
+[data-pizza-face='prev'] {
+  opacity: 0;
+}
+
+/* Heat under the plate, breathing with the turn. */
+[data-pizza-halo] {
+  --dip: min(var(--t), calc(1 - var(--t)));
+  background: radial-gradient(
+    closest-side circle at 50% 50%,
+    rgb(var(--enzo-ember-rgb) / calc(0.22 - 0.14 * var(--dip))) 0%,
+    rgb(var(--cef-primary-rgb) / 0.06) 45%,
+    transparent 72%
+  );
+  transform: scale(1.15);
+}
+
+/* The copy arrives from under its own baseline as the plate finishes turning. */
+[data-pizza-copy] {
+  animation: pizza-copy-in 620ms var(--cef-ease-decelerate) both;
+}
+
+@keyframes pizza-copy-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.4rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+[data-pizza-progress] {
+  transition: width 420ms var(--cef-ease-standard);
+}
+
+/* --------------------------------------------------------------------------
+ * The course rail — starters, salads, desserts, drinks
+ *
+ * Explicitly NOT the pizza reel. Nothing rotates: these dishes have an up, and
+ * turning them would read as a spun photograph. The motion is vertical — the
+ * picture uncovers itself from its bottom edge on arrival, then drifts slower
+ * than the page as it crosses.
+ *
+ * --d runs -1 (arriving) → 0 (centred) → 1 (leaving); it defaults to 0, so with
+ * no JavaScript every row renders centred and still.
+ * -------------------------------------------------------------------------- */
+
+[data-course-row] {
+  --d: 0;
+}
+
+/* Alternating sides. Higher specificity than Tailwind's own order utility, so
+   the flip wins without !important. */
+@media (min-width: 768px) {
+  [data-course-side='right'] [data-course-media] {
+    order: 2;
+  }
+
+  [data-course-side='right'] [data-course-copy] {
+    order: 1;
+  }
+}
+
+[data-course-media] {
+  /* The drift. Against the scroll, and small — this is depth, not a ride. */
+  transform: translate3d(0, calc(var(--d) * -2.2rem), 0);
+  transition: transform 90ms linear;
+  will-change: transform;
+}
+
+/*
+ * Arrival, once. The picture uses exactly the same motion as its own copy —
+ * fading up from a little below — so a row reads as one object arriving. It
+ * used to uncover itself with a clip-path wipe from the bottom edge, which read
+ * as the photograph being unveiled rather than as it arriving alongside its
+ * text. Scoped to html.js so a visitor without JavaScript never sees a hidden
+ * row.
+ */
+.js [data-course-row]:not([data-arrived]) [data-course-frame] {
+  opacity: 0;
+  transform: translate3d(0, 1.5rem, 0);
+}
+
+.js [data-course-row][data-arrived] [data-course-frame] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 620ms var(--cef-ease-decelerate),
+    transform 720ms var(--cef-ease-decelerate);
+}
+
+.js [data-course-row]:not([data-arrived]) [data-course-copy] {
+  opacity: 0;
+  transform: translate3d(0, 1.5rem, 0);
+}
+
+.js [data-course-row][data-arrived] [data-course-copy] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 620ms var(--cef-ease-decelerate) 120ms,
+    transform 720ms var(--cef-ease-decelerate) 120ms;
+}
+
+[data-course-glow] {
+  background: radial-gradient(
+    closest-side circle at 50% 50%,
+    rgb(var(--enzo-ember-rgb) / 0.14) 0%,
+    rgb(var(--cef-primary-rgb) / 0.05) 48%,
+    transparent 74%
+  );
+  transform: scale(1.2);
+}
+
+/* --------------------------------------------------------------------------
+ * Prices
+ *
+ * The one number on the page a guest is actually looking for, so it gets a
+ * moment when it arrives — a small settle upward and a brass bloom that fades.
+ *
+ * `inline-block` is what makes this safe: transforms on an inline box are
+ * ignored, and any layout-affecting property here would reflow the ingredient
+ * list beside it on every row. A transform and a text-shadow cost no layout at
+ * all, so nothing around the price moves.
+ * -------------------------------------------------------------------------- */
+
+.js [data-pizza-copy] [data-price],
+.js [data-course-row][data-arrived] [data-price] {
+  animation: price-glow 1100ms var(--cef-ease-decelerate) 220ms both;
+}
+
+/*
+ * Light only. An earlier version also scaled the number up through the middle
+ * of the animation, which drew the eye for the wrong reason — the price looked
+ * like it was being sold rather than stated. The bloom alone gives it its
+ * moment. Nothing here affects layout, so the "-tól" beside it never moves.
+ */
+@keyframes price-glow {
+  0% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
+  45% {
+    opacity: 1;
+    text-shadow: 0 0 1.6rem rgb(var(--cef-primary-rgb) / 0.55);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 0 rgb(var(--cef-primary-rgb) / 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-pizza-plate],
+  [data-course-media],
+  [data-course-frame],
+  [data-course-copy] {
+    transform: none;
+    transition: none;
+  }
+
+  [data-pizza-copy] {
+    animation: none;
+  }
+
+  .js [data-pizza-copy] [data-price],
+  .js [data-course-row][data-arrived] [data-price] {
+    animation: none;
+  }
+
+  .js [data-course-row]:not([data-arrived]) [data-course-frame],
+  .js [data-course-row]:not([data-arrived]) [data-course-copy] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  [data-statement-word],
+  [data-statement-word].text-primary {
+    transition: none;
+  }
+
+  [data-statement] {
+    --statement-progress: 1 !important;
+  }
+}

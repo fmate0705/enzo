@@ -1,0 +1,20 @@
+{
+  "sessions": [
+    {
+      "id": "session-2026-08-15T19-27-18-780Z",
+      "startedAt": "2026-08-15T19:27:18.792Z",
+      "endedAt": "2026-08-15T19:27:18.793Z",
+      "commandCount": 1,
+      "fileCount": 0,
+      "errorCount": 0
+    },
+    {
+      "id": "session-2026-08-16T11-01-37-002Z",
+      "startedAt": "2026-08-16T11:01:37.015Z",
+      "endedAt": "2026-08-16T11:01:37.016Z",
+      "commandCount": 1,
+      "fileCount": 0,
+      "errorCount": 0
+    }
+  ]
+}

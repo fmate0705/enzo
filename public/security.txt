@@ -1,0 +1,8 @@
+# The canonical location for this file is /.well-known/security.txt (RFC 9116).
+# This root copy exists because some scanners and tools still look here first.
+# Keep the two in sync.
+#
+# NEEDS CLIENT CONFIRMATION — replace with a monitored address before launch.
+Contact: mailto:security@enzodinapoli.hu
+Preferred-Languages: hu, en
+Expires: 2027-01-01T00:00:00.000Z

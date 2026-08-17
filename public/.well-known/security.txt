@@ -1,0 +1,6 @@
+# NEEDS CLIENT CONFIRMATION — replace with a monitored address before launch.
+# An unmonitored security contact is worse than none: it promises a channel
+# that nobody reads. See docs/CONTENT-INVENTORY.md.
+Contact: mailto:security@enzodinapoli.hu
+Preferred-Languages: hu, en
+Expires: 2027-01-01T00:00:00.000Z

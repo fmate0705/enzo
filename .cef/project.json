@@ -1,0 +1,24 @@
+{
+  "name": "enzo-di-napoli",
+  "framework": "nextjs",
+  "version": "0.1.0",
+  "createdDate": "2026-08-15T18:32:34.525Z",
+  "cefVersion": "0.1.0",
+  "packageManager": "pnpm",
+  "language": "typescript",
+  "buildSystem": "next",
+  "deployment": "vercel",
+  "database": "none",
+  "orm": "none",
+  "cms": "none",
+  "authentication": "none",
+  "features": {
+    "adminPanel": false,
+    "blog": false,
+    "commerce": false,
+    "legalPages": true,
+    "aiSeo": true,
+    "githubActions": true,
+    "docker": true
+  }
+}

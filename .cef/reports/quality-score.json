@@ -1,0 +1,36 @@
+{
+  "projectName": "enzo-di-napoli",
+  "reviewedAt": "2026-08-16T10:57:44.886Z",
+  "overall": 86,
+  "readiness": 81,
+  "recommendation": "conditional",
+  "requiredPassed": true,
+  "byGate": {
+    "architecture": 100,
+    "design": 100,
+    "accessibility": 100,
+    "performance": 100,
+    "seo": 30,
+    "security": 100,
+    "content": 29,
+    "brand": 99,
+    "legal": 70,
+    "docker": 100,
+    "testing": 100,
+    "documentation": 100
+  },
+  "gateStatus": {
+    "architecture": "pass",
+    "design": "pass",
+    "accessibility": "pass",
+    "performance": "pass",
+    "seo": "warn",
+    "security": "pass",
+    "content": "warn",
+    "brand": "pass",
+    "legal": "warn",
+    "docker": "pass",
+    "testing": "pass",
+    "documentation": "pass"
+  }
+}

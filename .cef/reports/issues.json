@@ -1,0 +1,214 @@
+{
+  "issues": [
+    {
+      "id": "seo-1",
+      "gate": "seo",
+      "severity": "minor",
+      "message": "Missing SEO artifact \"public/schema.json\".",
+      "file": "public/schema.json"
+    },
+    {
+      "id": "seo-2",
+      "gate": "seo",
+      "severity": "minor",
+      "message": "Page declares no canonical URL.",
+      "file": "app/(site)/adatkezelesi-tajekoztato/page.tsx"
+    },
+    {
+      "id": "seo-3",
+      "gate": "seo",
+      "severity": "minor",
+      "message": "Page declares no canonical URL.",
+      "file": "app/(site)/cookie-tajekoztato/page.tsx"
+    },
+    {
+      "id": "seo-4",
+      "gate": "seo",
+      "severity": "minor",
+      "message": "Page declares no canonical URL.",
+      "file": "app/(site)/felhasznalasi-feltetelek/page.tsx"
+    },
+    {
+      "id": "seo-5",
+      "gate": "seo",
+      "severity": "minor",
+      "message": "Page declares no canonical URL.",
+      "file": "app/(site)/impresszum/page.tsx"
+    },
+    {
+      "id": "seo-6",
+      "gate": "seo",
+      "severity": "minor",
+      "message": "Page declares no canonical URL.",
+      "file": "app/admin/belepes/page.tsx"
+    },
+    {
+      "id": "seo-7",
+      "gate": "seo",
+      "severity": "minor",
+      "message": "Page declares no canonical URL.",
+      "file": "app/admin/ceges-adatok/page.tsx"
+    },
+    {
+      "id": "seo-8",
+      "gate": "seo",
+      "severity": "minor",
+      "message": "Page declares no canonical URL.",
+      "file": "app/admin/elerhetoseg/page.tsx"
+    },
+    {
+      "id": "seo-9",
+      "gate": "seo",
+      "severity": "minor",
+      "message": "Page declares no canonical URL.",
+      "file": "app/admin/etlap/page.tsx"
+    },
+    {
+      "id": "seo-10",
+      "gate": "seo",
+      "severity": "minor",
+      "message": "Page declares no canonical URL.",
+      "file": "app/admin/jogi/page.tsx"
+    },
+    {
+      "id": "seo-11",
+      "gate": "seo",
+      "severity": "major",
+      "message": "Page has no metadata export.",
+      "file": "app/admin/page.tsx"
+    },
+    {
+      "id": "seo-12",
+      "gate": "seo",
+      "severity": "minor",
+      "message": "Page declares no canonical URL.",
+      "file": "app/admin/page.tsx"
+    },
+    {
+      "id": "content-13",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/\" has no matching page.",
+      "file": "app/(site)/error.tsx"
+    },
+    {
+      "id": "content-14",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/\" has no matching page.",
+      "file": "app/(site)/etlap/[slug]/page.tsx"
+    },
+    {
+      "id": "content-15",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/etlap\" has no matching page.",
+      "file": "app/(site)/etlap/[slug]/page.tsx"
+    },
+    {
+      "id": "content-16",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/etlap\" has no matching page.",
+      "file": "app/(site)/etlap/[slug]/page.tsx"
+    },
+    {
+      "id": "content-17",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/megkozelites\" has no matching page.",
+      "file": "app/(site)/galeria/page.tsx"
+    },
+    {
+      "id": "content-18",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/etlap\" has no matching page.",
+      "file": "app/(site)/tortenet/page.tsx"
+    },
+    {
+      "id": "content-19",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/\" has no matching page.",
+      "file": "app/admin/layout.tsx"
+    },
+    {
+      "id": "content-20",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/etlap\" has no matching page.",
+      "file": "app/not-found.tsx"
+    },
+    {
+      "id": "content-21",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/\" has no matching page.",
+      "file": "app/not-found.tsx"
+    },
+    {
+      "id": "content-22",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/etlap\" has no matching page.",
+      "file": "components/home/closing-cta.tsx"
+    },
+    {
+      "id": "content-23",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/megkozelites\" has no matching page.",
+      "file": "components/home/location-block.tsx"
+    },
+    {
+      "id": "content-24",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/etlap\" has no matching page.",
+      "file": "components/home/oven-hero.tsx"
+    },
+    {
+      "id": "content-25",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/etlap\" has no matching page.",
+      "file": "components/home/signature.tsx"
+    },
+    {
+      "id": "content-26",
+      "gate": "content",
+      "severity": "minor",
+      "message": "Internal link \"/cookie-tajekoztato\" has no matching page.",
+      "file": "components/site/cookie-consent.tsx"
+    },
+    {
+      "id": "content-27",
+      "gate": "content",
+      "severity": "nit",
+      "message": "Grammar and tone require a human read-through before approval.",
+      "recommendation": "Proofread all shipped copy."
+    },
+    {
+      "id": "brand-28",
+      "gate": "brand",
+      "severity": "nit",
+      "message": "Brand alignment (voice, imagery, tone) needs a human sign-off.",
+      "recommendation": "Have the brand owner review before approval."
+    },
+    {
+      "id": "legal-29",
+      "gate": "legal",
+      "severity": "major",
+      "message": "Required legal page \"Terms of Service\" is not present.",
+      "recommendation": "Author the Terms of Service page: Governs use of the site and services."
+    },
+    {
+      "id": "legal-30",
+      "gate": "legal",
+      "severity": "major",
+      "message": "Generated legal text requires review by a qualified legal professional.",
+      "recommendation": "Generated legal text is a draft only. It MUST be reviewed by a qualified legal professional before publication; CEF does not provide legal advice."
+    }
+  ]
+}
