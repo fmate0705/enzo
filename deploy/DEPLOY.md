@@ -8,7 +8,7 @@ builds and runs the repository's `docker-compose.yml` on deploy.
 
 | File                 | Purpose                                                                                                                                                      |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `Dockerfile`         | Multi-stage Next.js **standalone** build; listens on port 80, runs as the unprivileged `node` user.                                                          |
+| `Dockerfile`         | Multi-stage Next.js **standalone** build; listens on port 3000, runs as the unprivileged `node` user.                                                        |
 | `docker-compose.yml` | The platform-contract compose: container `hosting_enzo-di-napoli_web`, network `client_enzo-di-napoli_net`, `env_file: .env`, capped logs, no Docker labels. |
 | `compose.local.yml`  | **Local only, never deployed.** Publishes a host port so the site is reachable without Traefik. Opt-in via `-f`; see "Local check" below.                    |
 | `.dockerignore`      | Keeps `.env`, `.git`, `node_modules`, and `.next` out of the build context.                                                                                  |
@@ -17,22 +17,35 @@ builds and runs the repository's `docker-compose.yml` on deploy.
 
 ## Security posture
 
-The container is built and run to pass a host security scan:
+The platform validates `docker-compose.yml` against an **allowlist** of compose
+keys and rejects the whole deploy if it finds anything outside it. Confirmed by
+rejection, it refuses:
+
+- `security_opt` — including `no-new-privileges:true`
+- `cap_add` — including a single capability
+
+It does **not** object to `cap_drop`. It reports every violation it finds in one
+pass, and `cap_drop: ALL` was present in a rejected file without being listed.
+
+So the hardening lives in the image rather than the compose file:
 
 - **Not root.** The image drops to the `node` account (uid 1000). `/data` and
   `/app/.next/cache` are created in the image owned by that user — that is what
   lets an unprivileged process write to the mounted volume, and lets next/image
   cache its optimised output instead of re-encoding on every request.
-- **`no-new-privileges`**, and **all capabilities dropped** except
-  `NET_BIND_SERVICE`. That one has to stay: the container listens on port 80 to
-  match the platform's expected container port, and binding below 1024 is
-  privileged — without it the server exits at startup with `EACCES`.
-  _If the platform validator refuses `cap_add` outright_, stop using a
-  privileged port instead: set `PORT=3000` in the Dockerfile, change `expose` to
-  `'3000'`, set the container port to 3000 in the panel, and delete the
-  capability block.
+- **Port 3000, not 80.** This is a consequence of the two rules above, not a
+  preference. Binding below 1024 is privileged, so a non-root process on port 80
+  needs `NET_BIND_SERVICE` handed back — which the validator forbids. An
+  unprivileged port needs no capability at all, so `cap_drop: ALL` can stand on
+  its own and the container still starts.
+- **All capabilities dropped**, and none added back. Nothing in the runtime
+  needs one.
 - **No published ports, no Docker socket, no privileged mode.** Traefik reaches
   the container over `client_enzo-di-napoli_net`; nothing is bound on the host.
+
+> If a future validator rejects `cap_drop` as well, delete those two lines. The
+> container still runs unprivileged on an unprivileged port — nothing depends on
+> them.
 
 > **Never add a `docker-compose.override.yml`.** Compose merges that filename
 > **automatically, with no flag**, so a file meant for a laptop takes effect on
@@ -49,8 +62,15 @@ The container is built and run to pass a host security scan:
    - New Client → set the domain; template _None_ for a repo deploy). The
      container name and network above must match this slug — regenerate with
      `cef generate --client-slug <your-slug>` if it differs.
-2. **Container port** must be **80** (the platform default), matching
-   the Dockerfile's `EXPOSE 80`.
+2. **Container port** must be set to **3000**, matching the Dockerfile's
+   `EXPOSE 3000`.
+
+   > This is **not** the platform default of 80, and it has to be changed by
+   > hand. See "Security posture" above for why the container cannot listen on 80. Traefik routes to whatever the panel tells it: leave this at 80 and the
+   > compose will pass validation, the container will start healthily, and the
+   > domain will answer **502** — because Traefik is talking to a port nothing
+   > is listening on.
+
 3. **Environment**: set runtime variables under **Sites → site → Environment**.
    The panel writes `.env`, which the compose loads via `env_file`. Secrets are
    never baked into the image. Required:
@@ -106,9 +126,9 @@ The container is built and run to pass a host security scan:
 
 ## Local check (optional)
 
-The compose file alone only `expose`s port 80, so on a laptop — where there is
-no Traefik — nothing is reachable until a port is published. `compose.local.yml`
-does that, and has to be named on the command line:
+The compose file alone only `expose`s the container port, so on a laptop — where
+there is no Traefik — nothing is reachable until a port is published.
+`compose.local.yml` does that, and has to be named on the command line:
 
 ```bash
 docker compose -f docker-compose.yml -f compose.local.yml up -d --build

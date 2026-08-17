@@ -21,7 +21,9 @@ services:
       # The local .env is missing it today, which is exactly that situation.
       CONTENT_DATA_DIR: /data
     expose:
-      - '80'
+      # Unprivileged, so the container needs no capability to bind it. Must match
+      # PORT in the Dockerfile and the container port set in the panel.
+      - '3000'
     volumes:
       # Everything the admin edits — the menu, the contact details, the company
       # data and the legal texts — is one JSON file in here. WITHOUT this volume
@@ -34,25 +36,23 @@ services:
       - client_enzo-di-napoli_net
 
     # ---- Hardening --------------------------------------------------------
-    # The image already drops to the unprivileged `node` user; this is the rest
-    # of the posture a host security scan looks for.
-    security_opt:
-      # Blocks setuid binaries from gaining privileges — so even a compromised
-      # process cannot climb back up to root inside the container.
-      - no-new-privileges:true
+    # The platform validates this file against an ALLOWLIST of compose keys and
+    # rejects the deploy outright if it sees anything else. It refused both
+    # `security_opt` (even `no-new-privileges:true`) and `cap_add`. It did not
+    # object to `cap_drop`, which it would have reported in the same pass — it
+    # lists every violation it finds — so dropping capabilities is permitted and
+    # adding them back is not.
+    #
+    # That is why the container listens on 3000 rather than 80. Binding below
+    # 1024 is privileged, so port 80 as a non-root user needs NET_BIND_SERVICE
+    # handed back, and this platform will not allow that. An unprivileged port
+    # needs no capability at all, which is what makes the line below safe:
+    # nothing here requires a capability to start.
+    #
+    # The container port in the panel MUST be 3000 to match. Traefik routes to
+    # whatever it is told; if it still says 80 the site answers with 502.
     cap_drop:
       - ALL
-    cap_add:
-      # The ONE capability that has to come back. The container listens on port
-      # 80 because that is the platform's expected container port, and binding
-      # below 1024 is privileged — dropping ALL without this makes the server
-      # exit at startup with EACCES.
-      #
-      # If the platform validator refuses cap_add entirely, the alternative is to
-      # stop using a privileged port: set PORT=3000 in the Dockerfile, change
-      # `expose` below to '3000', and set the container port to 3000 in the
-      # panel. Then this whole block can go.
-      - NET_BIND_SERVICE
 
     # Deliberately NOT read_only: next/image writes optimised AVIF and WebP into
     # /app/.next/cache on first request, and the content store writes to /data.
