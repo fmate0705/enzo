@@ -113,6 +113,10 @@ export default async function LocationPage() {
 
           <div className="space-y-6">
             <MapEmbed
+              // Taller than the default: this page is ABOUT getting here, so the
+              // map is the subject rather than a supporting element, and it now
+              // has the column height the opening-hours block used to occupy.
+              className="aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/5]"
               title={`${site.name} a térképen — ${site.fullAddress}`}
               fullAddress={site.fullAddress}
               latitude={contact.latitude}

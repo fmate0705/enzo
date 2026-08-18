@@ -34,10 +34,7 @@ export async function Signature() {
   if (items.length === 0) return null;
 
   return (
-    <Section
-      aria-labelledby="signature-title"
-      className="atmos atmos--brass atmos--engraved bg-surface/40"
-    >
+    <Section aria-labelledby="signature-title" className="atmos atmos--brass bg-surface/40">
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-8">
           <SectionHeading

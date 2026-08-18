@@ -151,29 +151,28 @@ export function OvenHero({ foodoraUrl }: { foodoraUrl: string }) {
         </div>
 
         {/* ---- Type ------------------------------------------------------ */}
-        <Container
-          wide
-          className="relative z-10 flex flex-1 flex-col justify-center pb-28 pt-24 md:justify-end md:pb-32"
-        >
-          <div data-hero-copy="" className="w-full text-center md:text-left">
+        <Container wide className="relative z-10 flex flex-1 flex-col justify-center pb-28 pt-24">
+          <div data-hero-copy="" className="w-full text-center">
             {/*
-             * Off-centre on desktop, centred on a phone — and the two display
-             * lines share ONE left edge.
+             * Centred, at every width.
              *
-             * They used to be set at different indents, so the eye travelled
-             * diagonally down the frame. On paper that is a composition; on a
-             * screen, with a headline this size, it read as a mistake — the
-             * second line looked as though it had been pushed out of place
-             * rather than placed. What makes this hero uneven now is where the
-             * whole block sits (low in the frame, hard against the left margin)
-             * rather than the lines disagreeing with each other.
+             * This hero has now been through both alternatives. The lines were
+             * first set at different indents, which read as a mistake rather
+             * than as a composition; anchoring the block low and left instead
+             * fixed the disagreement between the lines but left the type
+             * fighting the frame. Centred is what actually suits it: the
+             * photograph behind is itself centred on the mouth of the oven, and
+             * type stacked on that axis sits ON the picture rather than beside
+             * it.
              *
-             * The brass rule is the anchor that offset used to provide: it
-             * gives the block a top edge to hang from, so it reads as composed
-             * rather than as merely bottom-aligned. It is desktop-only — at
-             * 375px a centred stack wants no ornament above it.
+             * The brass rule is centred with the block and gives it a top edge
+             * to hang from, so it still reads as composed rather than as a
+             * default centred stack.
              */}
-            <span aria-hidden="true" className="mb-8 hidden h-px w-24 bg-primary/70 md:block" />
+            <span
+              aria-hidden="true"
+              className="mx-auto mb-8 hidden h-px w-24 bg-primary/70 md:block"
+            />
 
             <h1 className="font-display text-foreground">
               <span data-hero-line="1" className="block">
@@ -184,11 +183,10 @@ export function OvenHero({ foodoraUrl }: { foodoraUrl: string }) {
               </span>
             </h1>
 
-            {/* Actions follow the type: centred with it on a phone, on the
-                same left edge as the headline on desktop. */}
+            {/* Actions centred under the type, on its axis. */}
             <div
               data-hero-actions=""
-              className="mt-10 flex flex-wrap items-center justify-center gap-4 md:mt-12 md:justify-start"
+              className="mt-10 flex flex-wrap items-center justify-center gap-4 md:mt-12"
             >
               <ButtonLink href="/etlap" size="lg">
                 Étlap

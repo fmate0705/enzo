@@ -34,12 +34,16 @@ import { formatPrice, imageAltOf, type MenuItem } from '@/content/menu';
  *   React re-renders while you scroll a step.
  * - React state holds only the active index, so it changes 19 times over the
  *   entire section, not 19 times a second.
- * - Before the section is near, only the plates either side of the active one
- *   are mounted; a screen out, all of them are. Lazy loading cannot help here —
- *   nineteen <Image>s stacked in a pinned panel are all "in the viewport" as far
- *   as the browser is concerned — so the mounting window is what keeps the cost
- *   off visitors who never scroll this far, and dropping it on approach is what
- *   stops a fast scroll outrunning the network.
+ * - EVERY plate is mounted, always. Only three are ever visible, so mounting
+ *   only three was the tempting optimisation — but it meant the image for pizza
+ *   n+2 did not start loading until you had scrolled to n+1, and scrolling
+ *   faster than the network left a blank plate. Gating the mount on an
+ *   IntersectionObserver made that worse, not better: it added a condition that
+ *   has to fire correctly for any image to appear at all. Mounting everything is
+ *   unconditional, has no failure mode, and is what "all the pizzas are loaded"
+ *   actually requires. The cost is ~2 MB of AVIF for the whole category, spent
+ *   once, and only the first plate is priority so it never competes with the
+ *   page's own LCP.
  *
  * Without JavaScript, below `md`, and under prefers-reduced-motion this renders
  * as a plain stacked list with every dish and every image present. That is also
@@ -72,20 +76,19 @@ export function PizzaCarousel({
   const sectionRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const [pinned, setPinned] = useState(false);
+  /** Which plate the TURN is on — drives the rotation and the cross-fade. */
   const [active, setActive] = useState(0);
   /**
-   * Whether every plate in this category has been mounted yet.
+   * Which dish the COPY is showing.
    *
-   * The reel only ever SHOWS three plates, so mounting only three is the cheap
-   * default — but it also means the image for pizza n+2 does not begin loading
-   * until you have already scrolled to n+1, and scrolling faster than the
-   * network produces a blank plate. Once the section is approaching, all of them
-   * are mounted at once and the browser fetches them in parallel; by the time
-   * the visitor arrives they are decoded and in cache. Nineteen optimised AVIFs
-   * is roughly 2.5 MB, and it is only spent by someone who has committed to this
-   * section.
+   * Deliberately not the same number. The turn's step boundary is at t=0, but
+   * the two plates cross in the MIDDLE of the turn, around t=0.5 — so a copy
+   * block keyed on `active` changed a full half-step before the picture did.
+   * From t=0.62, when the incoming pizza was already fully opaque, the name and
+   * the price still belonged to the outgoing one. Rounding instead of flooring
+   * flips the text at the same instant the plates cross.
    */
-  const [warm, setWarm] = useState(false);
+  const [shown, setShown] = useState(0);
 
   // Decide once, on the client, whether this visitor gets the pinned version.
   useEffect(() => {
@@ -100,25 +103,6 @@ export function PizzaCarousel({
       wide.removeEventListener('change', decide);
     };
   }, []);
-
-  // Warm the whole category a screen before it is reached.
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section || warm) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setWarm(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '100% 0px 100% 0px' },
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, [warm, pinned]);
 
   useEffect(() => {
     if (!pinned) return;
@@ -145,9 +129,14 @@ export function PizzaCarousel({
       const index = Math.min(last, Math.floor(pos + 1e-6));
       const t = pos - index;
 
+      // Rounded, so the copy turns over where the images cross rather than
+      // where the step begins.
+      const reading = Math.min(last, Math.round(pos));
+
       stage.style.setProperty('--pos', String(pos));
       stage.style.setProperty('--t', String(t));
       setActive((current) => (current === index ? current : index));
+      setShown((current) => (current === reading ? current : reading));
     };
 
     const onScroll = () => {
@@ -187,7 +176,7 @@ export function PizzaCarousel({
   }
 
   /* ---- The pinned reel ---------------------------------------------------- */
-  const current = items[active];
+  const current = items[shown];
   if (!current) return null;
 
   return (
@@ -214,7 +203,7 @@ export function PizzaCarousel({
              * animation to be removed and re-added by hand on each change.
              */}
             <div key={current.slug} data-pizza-copy="">
-              <PizzaCopy item={current} index={active} total={items.length} linked />
+              <PizzaCopy item={current} index={shown} total={items.length} linked />
             </div>
 
             {/* Where you are in the category, as a rule that fills. */}
@@ -223,13 +212,13 @@ export function PizzaCarousel({
               className="mt-12 flex items-center gap-4 text-[0.6875rem] uppercase tracking-[0.2em] text-muted"
             >
               <span className="tabular-nums text-primary">
-                {String(active + 1).padStart(2, '0')}
+                {String(shown + 1).padStart(2, '0')}
               </span>
               <span className="relative h-px flex-1 bg-border">
                 <span
                   data-pizza-progress=""
                   className="absolute inset-y-0 left-0 bg-primary/70"
-                  style={{ width: `${((active + 1) / items.length) * 100}%` }}
+                  style={{ width: `${((shown + 1) / items.length) * 100}%` }}
                 />
               </span>
               <span className="tabular-nums">{String(items.length).padStart(2, '0')}</span>
@@ -258,11 +247,6 @@ export function PizzaCarousel({
             <div data-pizza-plate="" className="relative aspect-square shrink-0">
               {items.map((item, index) => {
                 const showing = Math.abs(index - active) <= 1;
-                // Before the section is warm, only the neighbours exist. After,
-                // every plate is mounted so nothing has to load on demand —
-                // the ones not in play are parked at opacity 0 by the 'idle'
-                // face and are inert to assistive tech.
-                if (!showing && !warm) return null;
                 return (
                   <div
                     key={item.slug}
@@ -319,6 +303,20 @@ function PlateArt({ item, priority = false }: { item: MenuItem; priority?: boole
       fill
       sizes="(max-width: 767px) 88vw, 64vw"
       priority={priority}
+      /*
+       * eager, not lazy. next/image defaults every non-priority image to
+       * loading="lazy", which defers the fetch until the browser decides the
+       * element has come near the viewport. Every plate here is stacked in the
+       * same box and most sit at opacity 0, so that is exactly the decision we
+       * do not want it making: the pizza six turns ahead is technically on
+       * screen, invisible, and left unfetched until the turn reaches it — which
+       * is the blank plate. Mounting them all only helps if they actually load,
+       * so the fetch is made unconditional.
+       *
+       * Only the first is priority; the rest are eager at normal priority, so
+       * they queue behind the page's own LCP rather than competing with it.
+       */
+      loading="eager"
       className="object-contain"
     />
   );

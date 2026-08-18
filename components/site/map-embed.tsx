@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@/lib/cn';
 import { useCallback, useEffect, useState } from 'react';
 import { Button, ExternalButtonLink } from '@/components/ui/button';
 import { CONSENT_EVENT, readConsent, writeConsent } from '@/lib/consent';
@@ -25,6 +26,7 @@ export function MapEmbed({
   longitude,
   embedUrl,
   directionsUrl,
+  className,
 }: {
   title: string;
   fullAddress: string;
@@ -32,6 +34,12 @@ export function MapEmbed({
   longitude: number;
   embedUrl: string;
   directionsUrl: string;
+  /**
+   * Overrides the frame's aspect ratio. The default suits the home page, where
+   * the map is one element among several; a page whose subject IS the location
+   * wants a taller frame beside its details column.
+   */
+  className?: string;
 }) {
   const [allowed, setAllowed] = useState<boolean | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -51,7 +59,12 @@ export function MapEmbed({
   const undecided = allowed === null;
 
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden border border-border bg-surface sm:aspect-[16/10]">
+    <div
+      className={cn(
+        'relative w-full overflow-hidden border border-border bg-surface',
+        className ?? 'aspect-[4/3] sm:aspect-[16/10]',
+      )}
+    >
       {allowed ? (
         <>
           <iframe
