@@ -1,6 +1,6 @@
 import { menu as seedMenu } from '@/content/menu';
 import { links, restaurant } from '@/content/restaurant';
-import { CONTENT_VERSION, type SiteContent } from './types';
+import { CONTENT_VERSION, FEATURED_COUNT, type SiteContent } from './types';
 import { defaultLegalDocs } from './legal-defaults';
 
 /**
@@ -16,6 +16,13 @@ export function defaultContent(): SiteContent {
     version: CONTENT_VERSION,
     updatedAt: new Date(0).toISOString(),
     menu: seedMenu.map((item) => ({ ...item })),
+    // Seeded from the reviewed `signature` flags in content/menu.ts, trimmed to
+    // the number the home page actually shows. Once an admin saves a selection
+    // this list is authoritative and the flag is only the starting point.
+    featured: seedMenu
+      .filter((item) => item.signature && item.category === 'pizzak')
+      .slice(0, FEATURED_COUNT)
+      .map((item) => item.slug),
     contact: {
       street: restaurant.address.street,
       postalCode: restaurant.address.postalCode,

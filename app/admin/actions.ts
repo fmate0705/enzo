@@ -14,7 +14,13 @@ import {
 } from '@/lib/auth/session';
 import { getContent, updateContent } from '@/lib/store/store';
 import { toSlug } from '@/lib/store/validate';
-import { LEGAL_DOCS, type CompanyContent, type LegalDocId, type MenuItem } from '@/lib/store/types';
+import {
+  FEATURED_COUNT,
+  LEGAL_DOCS,
+  type CompanyContent,
+  type LegalDocId,
+  type MenuItem,
+} from '@/lib/store/types';
 import { categories, type CategoryId } from '@/content/menu';
 
 /**
@@ -182,6 +188,41 @@ export async function saveMenu(_previous: ActionState, formData: FormData): Prom
       removedCount > 0
         ? `Mentve — ${items.length} tétel, ${removedCount} törölve.`
         : `Mentve — ${items.length} tétel.`,
+  };
+}
+
+/**
+ * Saves which pizzas the home page features, and in what order.
+ *
+ * The order of the submitted fields IS the order on the home page, which is why
+ * the form posts one field per slot rather than a set of checkboxes: a checkbox
+ * group has no order, and "which three" was never the whole question.
+ *
+ * Blank slots are dropped rather than rejected. An operator clearing a slot to
+ * show two pizzas is making a choice; refusing to save it would be pedantry.
+ * The store sanitises again on write — unknown or duplicate slugs cannot get in.
+ */
+export async function saveFeatured(
+  _previous: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  await requireSession();
+
+  const slugs: string[] = [];
+  for (let slot = 0; slot < FEATURED_COUNT; slot += 1) {
+    const slug = String(formData.get(`featured.${slot}`) ?? '').trim();
+    if (slug !== '' && !slugs.includes(slug)) slugs.push(slug);
+  }
+
+  await updateContent((current) => ({ ...current, featured: slugs }));
+  await revalidateSite();
+
+  return {
+    ok: true,
+    message:
+      slugs.length === 0
+        ? 'Mentve — nincs kiemelt pizza, a főoldal az alapértelmezettet mutatja.'
+        : `Mentve — ${slugs.length} kiemelt pizza a főoldalon.`,
   };
 }
 

@@ -882,6 +882,16 @@ body {
   opacity: 0;
 }
 
+/*
+ * Mounted purely so its image is fetched and decoded before the visitor reaches
+ * it. Never visible, never hit-testable, and excluded from the accessibility
+ * tree in the markup — this is a preload that happens to be a DOM node.
+ */
+[data-pizza-face='idle'] {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Heat under the plate, breathing with the turn. */
 [data-pizza-halo] {
   --dip: min(var(--t), calc(1 - var(--t)));

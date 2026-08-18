@@ -151,28 +151,44 @@ export function OvenHero({ foodoraUrl }: { foodoraUrl: string }) {
         </div>
 
         {/* ---- Type ------------------------------------------------------ */}
-        <Container wide className="relative z-10 flex flex-1 flex-col justify-center pb-28 pt-24">
-          <div data-hero-copy="" className="w-full">
+        <Container
+          wide
+          className="relative z-10 flex flex-1 flex-col justify-center pb-28 pt-24 md:justify-end md:pb-32"
+        >
+          <div data-hero-copy="" className="w-full text-center md:text-left">
             {/*
-             * Deliberately not a centred stack. The two display lines are set
-             * at different indents so the eye travels diagonally, the standfirst
-             * hangs off the first line's baseline on the right, and the actions
-             * sit under the *second* line rather than under the block. It reads
-             * as a composed page rather than a list of centred elements.
+             * Off-centre on desktop, centred on a phone — and the two display
+             * lines share ONE left edge.
+             *
+             * They used to be set at different indents, so the eye travelled
+             * diagonally down the frame. On paper that is a composition; on a
+             * screen, with a headline this size, it read as a mistake — the
+             * second line looked as though it had been pushed out of place
+             * rather than placed. What makes this hero uneven now is where the
+             * whole block sits (low in the frame, hard against the left margin)
+             * rather than the lines disagreeing with each other.
+             *
+             * The brass rule is the anchor that offset used to provide: it
+             * gives the block a top edge to hang from, so it reads as composed
+             * rather than as merely bottom-aligned. It is desktop-only — at
+             * 375px a centred stack wants no ornament above it.
              */}
+            <span aria-hidden="true" className="mb-8 hidden h-px w-24 bg-primary/70 md:block" />
+
             <h1 className="font-display text-foreground">
               <span data-hero-line="1" className="block">
                 Nápolyi pizza
               </span>{' '}
-              <span data-hero-line="2" className="block text-primary md:ml-[14%] lg:ml-[18%]">
+              <span data-hero-line="2" className="block text-primary">
                 hatvani tűzön.
               </span>
             </h1>
 
-            {/* Actions, centred across the frame. */}
+            {/* Actions follow the type: centred with it on a phone, on the
+                same left edge as the headline on desktop. */}
             <div
               data-hero-actions=""
-              className="mt-10 flex flex-wrap items-center justify-center gap-4 md:mt-12"
+              className="mt-10 flex flex-wrap items-center justify-center gap-4 md:mt-12 md:justify-start"
             >
               <ButtonLink href="/etlap" size="lg">
                 Étlap

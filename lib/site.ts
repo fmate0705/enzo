@@ -2,7 +2,7 @@ import 'server-only';
 
 import { getContent } from '@/lib/store/store';
 import { restaurant as identity } from '@/content/restaurant';
-import type { MenuItem, SiteContent } from '@/lib/store/types';
+import { FEATURED_COUNT, type MenuItem, type SiteContent } from '@/lib/store/types';
 import { categories, type CategoryId } from '@/content/menu';
 
 /**
@@ -95,6 +95,24 @@ export function itemsIn(menu: readonly MenuItem[], category: CategoryId): readon
 
 export function signatureItems(menu: readonly MenuItem[]): readonly MenuItem[] {
   return menu.filter((item) => item.signature);
+}
+
+/**
+ * The pizzas the home page features, in the admin's chosen order.
+ *
+ * `featured` is authoritative when set. It falls back to the `signature` flag so
+ * a store written before the field existed — or one an admin has emptied — still
+ * renders a populated home page rather than a blank section.
+ */
+export function featuredItems(
+  menu: readonly MenuItem[],
+  featured: readonly string[],
+): readonly MenuItem[] {
+  const chosen = featured
+    .map((slug) => menu.find((item) => item.slug === slug))
+    .filter((item): item is MenuItem => item !== undefined);
+
+  return chosen.length > 0 ? chosen : signatureItems(menu).slice(0, FEATURED_COUNT);
 }
 
 export function findItem(menu: readonly MenuItem[], slug: string): MenuItem | undefined {

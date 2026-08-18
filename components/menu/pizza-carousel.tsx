@@ -34,10 +34,12 @@ import { formatPrice, imageAltOf, type MenuItem } from '@/content/menu';
  *   React re-renders while you scroll a step.
  * - React state holds only the active index, so it changes 19 times over the
  *   entire section, not 19 times a second.
- * - Only the plates on either side of the active one are mounted. Nineteen
- *   full-size <Image>s stacked in a pinned panel are all "in the viewport" as
- *   far as the browser is concerned, so lazy loading would not save a single
- *   request — the window does.
+ * - Before the section is near, only the plates either side of the active one
+ *   are mounted; a screen out, all of them are. Lazy loading cannot help here —
+ *   nineteen <Image>s stacked in a pinned panel are all "in the viewport" as far
+ *   as the browser is concerned — so the mounting window is what keeps the cost
+ *   off visitors who never scroll this far, and dropping it on approach is what
+ *   stops a fast scroll outrunning the network.
  *
  * Without JavaScript, below `md`, and under prefers-reduced-motion this renders
  * as a plain stacked list with every dish and every image present. That is also
@@ -47,11 +49,43 @@ import { formatPrice, imageAltOf, type MenuItem } from '@/content/menu';
 /** Scroll distance allotted to each pizza, as a fraction of the viewport. */
 const STEP_VH = 78;
 
-export function PizzaCarousel({ items }: { items: readonly MenuItem[] }) {
+export function PizzaCarousel({
+  items,
+  /**
+   * How much fixed chrome sits above the reel, as a CSS length. On the menu page
+   * that is the masthead plus the sticky category rail; on the home page it is
+   * only the header, because there is no rail there. The stage parks under it.
+   */
+  chrome = '9.5rem',
+  /**
+   * What to render when the reel cannot run — narrow screens, no JavaScript,
+   * reduced motion. 'list' is the full stacked menu, which is what the menu page
+   * needs. 'none' renders nothing, for callers that supply their own small-screen
+   * layout and would otherwise show the dishes twice.
+   */
+  fallback = 'list',
+}: {
+  items: readonly MenuItem[];
+  chrome?: string;
+  fallback?: 'list' | 'none';
+}) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const [pinned, setPinned] = useState(false);
   const [active, setActive] = useState(0);
+  /**
+   * Whether every plate in this category has been mounted yet.
+   *
+   * The reel only ever SHOWS three plates, so mounting only three is the cheap
+   * default — but it also means the image for pizza n+2 does not begin loading
+   * until you have already scrolled to n+1, and scrolling faster than the
+   * network produces a blank plate. Once the section is approaching, all of them
+   * are mounted at once and the browser fetches them in parallel; by the time
+   * the visitor arrives they are decoded and in cache. Nineteen optimised AVIFs
+   * is roughly 2.5 MB, and it is only spent by someone who has committed to this
+   * section.
+   */
+  const [warm, setWarm] = useState(false);
 
   // Decide once, on the client, whether this visitor gets the pinned version.
   useEffect(() => {
@@ -66,6 +100,25 @@ export function PizzaCarousel({ items }: { items: readonly MenuItem[] }) {
       wide.removeEventListener('change', decide);
     };
   }, []);
+
+  // Warm the whole category a screen before it is reached.
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || warm) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setWarm(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '100% 0px 100% 0px' },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [warm, pinned]);
 
   useEffect(() => {
     if (!pinned) return;
@@ -116,6 +169,7 @@ export function PizzaCarousel({ items }: { items: readonly MenuItem[] }) {
 
   /* ---- The plain list: no JS, small screens, reduced motion --------------- */
   if (!pinned) {
+    if (fallback === 'none') return null;
     return (
       <ul className="mt-4" data-pizza-list="">
         {items.map((item, index) => (
@@ -140,9 +194,12 @@ export function PizzaCarousel({ items }: { items: readonly MenuItem[] }) {
     <div
       ref={sectionRef}
       data-pizza-reel=""
-      style={{
-        height: `calc(100vh - var(--menu-chrome) + ${(items.length - 1) * STEP_VH}vh)`,
-      }}
+      style={
+        {
+          '--menu-chrome': chrome,
+          height: `calc(100vh - var(--menu-chrome) + ${(items.length - 1) * STEP_VH}vh)`,
+        } as React.CSSProperties
+      }
     >
       {/* The stage's sticky offset and height come from --menu-chrome in
           brand.css, so it parks exactly under the header and the category rail
@@ -200,14 +257,25 @@ export function PizzaCarousel({ items }: { items: readonly MenuItem[] }) {
             <div data-pizza-halo="" aria-hidden="true" className="absolute inset-0" />
             <div data-pizza-plate="" className="relative aspect-square shrink-0">
               {items.map((item, index) => {
-                // Only the neighbours are mounted; see the note at the top.
-                if (Math.abs(index - active) > 1) return null;
+                const showing = Math.abs(index - active) <= 1;
+                // Before the section is warm, only the neighbours exist. After,
+                // every plate is mounted so nothing has to load on demand —
+                // the ones not in play are parked at opacity 0 by the 'idle'
+                // face and are inert to assistive tech.
+                if (!showing && !warm) return null;
                 return (
                   <div
                     key={item.slug}
                     data-pizza-face={
-                      index === active ? 'current' : index === active + 1 ? 'next' : 'prev'
+                      !showing
+                        ? 'idle'
+                        : index === active
+                          ? 'current'
+                          : index === active + 1
+                            ? 'next'
+                            : 'prev'
                     }
+                    aria-hidden={!showing || undefined}
                     className="absolute inset-0"
                   >
                     <PlateArt item={item} priority={index === 0} />

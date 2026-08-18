@@ -84,12 +84,24 @@ export interface SiteContent {
   version: number;
   updatedAt: string;
   menu: MenuItem[];
+  /**
+   * The pizzas the home page features, in the order they appear there.
+   *
+   * Slugs rather than indexes, so reordering or editing the menu cannot silently
+   * repoint the home page at a different dish. Capped at FEATURED_COUNT; an
+   * empty list means "fall back to the signature flag", which is what a store
+   * written before this field existed contains.
+   */
+  featured: string[];
   contact: ContactContent;
   company: CompanyContent;
   legal: Record<LegalDocId, LegalDoc>;
 }
 
 export const CONTENT_VERSION = 1;
+
+/** How many pizzas the home page reel shows. The admin picks exactly this many. */
+export const FEATURED_COUNT = 3;
 
 /** Company fields, in the order the admin form shows them, with Hungarian labels. */
 export const COMPANY_FIELDS: readonly {

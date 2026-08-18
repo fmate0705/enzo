@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Container } from '@/components/ui/container';
-import { OpeningHours } from './opening-hours';
 import { Wordmark } from './wordmark';
 import { ConsentSettingsButton } from './consent-settings-button';
 import { legalNav, primaryNav } from '@/content/navigation';
@@ -30,9 +29,9 @@ export async function Footer() {
 
       <Container className="relative">
         <div className="grid gap-12 py-16 md:grid-cols-2 md:py-20 lg:grid-cols-4">
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <Wordmark size="lg" href={null} />
-            <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted">
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted">
               {site.ownDescription}
             </p>
             <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2">
@@ -95,11 +94,6 @@ export async function Footer() {
             >
               Útvonaltervezés ↗
             </a>
-          </div>
-
-          <div>
-            <h2 className="text-xs uppercase tracking-[0.2em] text-primary">Nyitvatartás</h2>
-            <OpeningHours hours={site.content.contact.hours} className="mt-4" />
           </div>
         </div>
 

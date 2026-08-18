@@ -1,5 +1,11 @@
 import { categories, type CategoryId, type MenuItem } from '@/content/menu';
-import { LEGAL_DOCS, type LegalDoc, type LegalDocId, type SiteContent } from './types';
+import {
+  FEATURED_COUNT,
+  LEGAL_DOCS,
+  type LegalDoc,
+  type LegalDocId,
+  type SiteContent,
+} from './types';
 
 /**
  * Coerces unknown data into a valid SiteContent.
@@ -210,10 +216,28 @@ export function sanitizeContent(value: unknown, fallback: SiteContent): SiteCont
     legal[doc.id] = legalDoc(rawLegal[doc.id], fallback.legal[doc.id]);
   }
 
+  // ---- Featured ----------------------------------------------------------
+  // Validated against the menu that just survived sanitising, not against the
+  // input: a slug that no longer exists would render an empty home page section
+  // with no error anywhere. Deduped and capped, and order is preserved because
+  // order is the whole point of the field.
+  const finalMenu = menu.length > 0 ? menu : fallback.menu;
+  const sellable = new Set(finalMenu.filter((i) => i.category === 'pizzak').map((i) => i.slug));
+  const rawFeatured = Array.isArray(raw.featured) ? raw.featured : fallback.featured;
+  const featured: string[] = [];
+  for (const entry of rawFeatured) {
+    if (typeof entry !== 'string') continue;
+    const slug = entry.trim();
+    if (!sellable.has(slug) || featured.includes(slug)) continue;
+    featured.push(slug);
+    if (featured.length === FEATURED_COUNT) break;
+  }
+
   return {
     version: int(raw.version, fallback.version, 0, 1000),
     updatedAt: text(raw.updatedAt, fallback.updatedAt, 40),
-    menu: menu.length > 0 ? menu : fallback.menu,
+    menu: finalMenu,
+    featured,
     contact,
     company,
     legal,

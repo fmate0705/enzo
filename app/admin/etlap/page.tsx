@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { getContent } from '@/lib/store/store';
 import { addMenuItem } from '../actions';
 import { MenuEditor } from './menu-editor';
+import { FeaturedEditor } from './featured-editor';
 import { Button } from '@/components/ui/button';
 
 export const metadata = { title: 'Étlap' };
@@ -54,6 +55,14 @@ export default async function AdminMenuPage() {
           </Button>
         </form>
       </div>
+
+      {/* Only pizzas can be featured — the home page reel turns a plate on its
+          own axis, which is a composition that only works for a disc shot from
+          above. */}
+      <FeaturedEditor
+        items={content.menu.filter((item) => item.category === 'pizzak')}
+        selected={content.featured}
+      />
 
       <MenuEditor items={content.menu} images={images} />
     </div>

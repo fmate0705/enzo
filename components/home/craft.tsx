@@ -82,19 +82,6 @@ export function Craft() {
                 stílusdöntés — a tészta így viselkedik jól.
               </p>
             </div>
-
-            <dl className="mt-12 grid grid-cols-2 gap-8 border-t border-border pt-8 sm:grid-cols-3">
-              {[
-                { term: 'Kemence', detail: restaurant.oven },
-                { term: 'Minősítés', detail: 'AVPN' },
-                { term: 'Átmérő', detail: '32 cm' },
-              ].map((fact) => (
-                <div key={fact.term}>
-                  <dt className="text-xs uppercase tracking-[0.16em] text-muted">{fact.term}</dt>
-                  <dd className="font-display mt-2 text-2xl text-primary">{fact.detail}</dd>
-                </div>
-              ))}
-            </dl>
           </div>
         </div>
       </Container>
