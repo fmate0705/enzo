@@ -113,7 +113,7 @@ export default async function MenuItemPage({ params }: Params) {
                     fill
                     priority
                     sizes="(max-width: 1023px) 92vw, 46vw"
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
               ) : (

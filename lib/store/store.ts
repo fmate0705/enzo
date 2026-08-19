@@ -7,6 +7,7 @@ import { cache } from 'react';
 import { defaultContent } from './defaults';
 import { migrateContent } from './migrate';
 import { sanitizeContent } from './validate';
+import { resolveImagePath } from '@/lib/images';
 import { CONTENT_VERSION, type SiteContent } from './types';
 
 /**
@@ -43,7 +44,7 @@ export const getContent = cache(async (): Promise<SiteContent> => {
     // Then reconciled with the assets that actually shipped, so a photograph
     // replaced in the repo does not leave the stored path pointing at a file
     // that no longer exists. See migrate.ts — it is narrower than it sounds.
-    return migrateContent(sanitizeContent(parsed, defaults), defaults);
+    return withResolvedImages(migrateContent(sanitizeContent(parsed, defaults), defaults));
   } catch (error) {
     const code = (error as NodeJS.ErrnoException)?.code;
     if (code !== 'ENOENT') {
@@ -51,9 +52,32 @@ export const getContent = cache(async (): Promise<SiteContent> => {
       // has to serve, so it falls back to the reviewed defaults.
       console.error('Content store unreadable, serving defaults instead:', error);
     }
-    return defaults;
+    return withResolvedImages(defaults);
   }
 });
+
+/**
+ * Last line of defence between a stored path and next/image.
+ *
+ * migrateContent already reconciles the store against the seed. This catches
+ * the case it cannot: the seed being wrong too, because someone dropped new
+ * files into public/images and changed no code. Resolution is by basename, so
+ * a jpg -> png -> webp swap needs no edit anywhere.
+ *
+ * A path that resolves to nothing becomes null, and a dish with no photograph
+ * renders as a typographic card — which is a designed state. Leaving the dead
+ * path in place would instead render an empty rectangle where the food goes.
+ */
+function withResolvedImages(content: SiteContent): SiteContent {
+  let changed = false;
+  const menu = content.menu.map((item) => {
+    const resolved = resolveImagePath(item.image);
+    if (resolved === item.image) return item;
+    changed = true;
+    return { ...item, image: resolved };
+  });
+  return changed ? { ...content, menu } : content;
+}
 
 /**
  * Replaces the store.

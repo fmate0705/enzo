@@ -701,9 +701,19 @@ body {
  * trails the first, which is what makes the diagonal read as movement rather
  * than as two things sliding together.
  */
-[data-hero-copy] {
-  opacity: calc(1 - 0.55 * max(0, var(--p) - 0.55) / 0.45);
-  transform: translate3d(0, calc(-3vh * max(0, var(--p) - 0.4) / 0.6), 0);
+/*
+ * The headline eases away as the section hands over.
+ *
+ * Scoped to the viewports that actually scrub. Below md the hero is a composed
+ * still and --p is pinned to 1, so an unscoped rule here resolved to
+ * opacity 0.45 and left the headline translucent over the fire on every phone —
+ * permanently, because nothing ever moves --p back down.
+ */
+@media (min-width: 768px) {
+  [data-hero-copy] {
+    opacity: calc(1 - 0.55 * max(0, var(--p) - 0.55) / 0.45);
+    transform: translate3d(0, calc(-3vh * max(0, var(--p) - 0.4) / 0.6), 0);
+  }
 }
 
 [data-hero-line] {
@@ -841,16 +851,32 @@ body {
 }
 
 /*
- * Sized against the STAGE, never the viewport: `0.92` keeps the plate shorter
- * than the space it sits in at every window size, so it can only ever leave the
- * frame sideways. The 64vw arm is what makes it run off the right edge on a
- * wide window; the stage-height arm is what stops it being cropped at the
- * bottom on a short one.
+ * Sized to FIT, on both axes.
+ *
+ * The plate used to be oversized on purpose — 64vw wide with a -7vw margin, so
+ * it ran past the right edge and read as a pizza on the table rather than a
+ * product shot. In practice it was simply cut off: 75px past the right edge and
+ * 124px below the fold at 1280x900, on a photograph that is the whole point of
+ * the page.
+ *
+ * Two things cause the vertical overhang and only one is fixable here.
+ * `--menu-chrome` is a fixed 9.5rem guess at how much header and rail sit above
+ * the reel; the real offset measures ~19rem, so `--stage-h` overestimates the
+ * visible area by that difference and the stage hangs below the fold. Rather
+ * than re-tune a constant that depends on the header, the plate is sized with
+ * enough margin to stay inside the stage even when that guess is wrong.
+ *
+ * Two caps, and the plate takes the smaller: 46vw so it fits its grid column,
+ * and 0.86 of the stage height so it fits the stage. That second one is only
+ * trustworthy because --menu-chrome now matches the reel's real offset — when
+ * it was under-measured the stage hung below the fold and this cap measured
+ * against space that was not on screen.
+ *
+ * No negative margin: nothing leaves the frame on either axis.
  */
 [data-pizza-plate] {
-  width: min(64vw, calc(var(--stage-h) * 0.92));
-  /* Pushed past the right edge; the stage clips it. */
-  margin-right: -7vw;
+  width: min(46vw, calc(var(--stage-h) * 0.86));
+  margin-right: 0;
 }
 
 [data-pizza-plate] {

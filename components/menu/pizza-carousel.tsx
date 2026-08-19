@@ -59,8 +59,14 @@ export function PizzaCarousel({
    * How much fixed chrome sits above the reel, as a CSS length. On the menu page
    * that is the masthead plus the sticky category rail; on the home page it is
    * only the header, because there is no rail there. The stage parks under it.
+   *
+   * It sets BOTH the sticky offset and the stage height, so an underestimate is
+   * not cosmetic: the stage then believes it has more room than the screen
+   * gives it and hangs below the fold, taking the bottom of the pizza with it.
+   * Measured on the menu page the reel parks at ~19rem, not the 9.5rem this
+   * previously defaulted to — which is why the plate was cropped.
    */
-  chrome = '9.5rem',
+  chrome = '19rem',
   /**
    * What to render when the reel cannot run — narrow screens, no JavaScript,
    * reduced motion. 'list' is the full stacked menu, which is what the menu page

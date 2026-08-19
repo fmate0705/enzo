@@ -30,7 +30,15 @@ export function FoodCard({
       href={`/etlap/${item.slug}`}
       className={cn('group relative flex flex-col rounded-sm', className)}
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface">
+      {/*
+       * Square and contained, not cropped.
+       *
+       * The pizzas are 1:1 cut-outs on transparency. In a 4:3 frame with
+       * object-cover the crust lost its top and bottom on every card. Contain
+       * keeps the whole dish, and a square frame means there is no letterboxing
+       * to show for it.
+       */}
+      <div className="relative aspect-square w-full overflow-hidden">
         {item.image ? (
           <Image
             src={item.image}
@@ -38,7 +46,7 @@ export function FoodCard({
             fill
             priority={priority}
             sizes={sizes}
-            className="object-cover transition-transform duration-slow ease-standard will-change-transform group-hover:scale-[1.04]"
+            className="object-contain transition-transform duration-slow ease-standard will-change-transform group-hover:scale-[1.04]"
           />
         ) : (
           <div className="flex h-full items-center justify-center p-6">

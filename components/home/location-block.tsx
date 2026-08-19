@@ -2,7 +2,6 @@ import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
 import { ButtonLink, ExternalButtonLink } from '@/components/ui/button';
 import { MapEmbed } from '@/components/site/map-embed';
-import { OpeningHours } from '@/components/site/opening-hours';
 import { getSite } from '@/lib/site';
 
 /**
@@ -10,8 +9,9 @@ import { getSite } from '@/lib/site';
  *
  * The map is one half of a designed two-column block, framed and toned to the
  * page, rather than a widget dropped into a white box. Everything a visitor
- * needs to actually arrive — address, hours, phone, directions — sits beside it
- * and works whether or not the map itself is loaded.
+ * needs to actually arrive — address, phone, directions — sits beside it and
+ * works whether or not the map itself is loaded. The opening hours are not
+ * repeated here; they are in the footer of every page.
  */
 export async function LocationBlock() {
   const site = await getSite();
@@ -37,33 +37,32 @@ export async function LocationBlock() {
               A pizzéria Hatvan belvárosában, a Kossuth téren található, saját utcafronti terasszal.
             </p>
 
-            <div className="mt-10 grid gap-8 sm:grid-cols-2">
+            {/*
+             * Address and phone only. The opening hours are in the footer of
+             * every page — printing the week twice on one screen is two places
+             * to forget when they change, and it was the block squeezing the map.
+             */}
+            <dl className="mt-10 grid gap-8 sm:grid-cols-2">
               <div>
-                <h3 className="text-xs uppercase tracking-[0.16em] text-muted">Nyitvatartás</h3>
-                <OpeningHours hours={contact.hours} className="mt-4" />
-                <p className="mt-3 text-xs leading-relaxed text-muted">
-                  {contact.deliveryHoursNote}
-                </p>
+                <dt className="text-xs uppercase tracking-[0.16em] text-muted">Cím</dt>
+                <dd>
+                  <address className="mt-3 not-italic leading-relaxed text-foreground">
+                    {site.fullAddress}
+                  </address>
+                </dd>
               </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xs uppercase tracking-[0.16em] text-muted">Telefon</h3>
+              <div>
+                <dt className="text-xs uppercase tracking-[0.16em] text-muted">Telefon</dt>
+                <dd>
                   <a
                     href={site.phone.href}
                     className="font-display mt-3 block text-2xl text-foreground transition-colors hover:text-primary"
                   >
                     {site.phone.display}
                   </a>
-                </div>
-                <div>
-                  <h3 className="text-xs uppercase tracking-[0.16em] text-muted">Cím</h3>
-                  <address className="mt-3 not-italic leading-relaxed text-foreground">
-                    {site.fullAddress}
-                  </address>
-                </div>
+                </dd>
               </div>
-            </div>
+            </dl>
 
             <div className="mt-10 flex flex-wrap gap-3">
               <ExternalButtonLink
@@ -80,6 +79,7 @@ export async function LocationBlock() {
 
           <div className="lg:pt-14">
             <MapEmbed
+              className="aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5]"
               title={`${site.name} a térképen — ${site.fullAddress}`}
               fullAddress={site.fullAddress}
               latitude={contact.latitude}

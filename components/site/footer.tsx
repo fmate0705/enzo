@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Container } from '@/components/ui/container';
+import { OpeningHours } from './opening-hours';
 import { Wordmark } from './wordmark';
 import { ConsentSettingsButton } from './consent-settings-button';
 import { legalNav, primaryNav } from '@/content/navigation';
@@ -29,7 +30,7 @@ export async function Footer() {
 
       <Container className="relative">
         <div className="grid gap-12 py-16 md:grid-cols-2 md:py-20 lg:grid-cols-4">
-          <div className="lg:col-span-2">
+          <div>
             <Wordmark size="lg" href={null} />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-muted">
               {site.ownDescription}
@@ -94,6 +95,23 @@ export async function Footer() {
             >
               Útvonaltervezés ↗
             </a>
+          </div>
+
+          {/*
+           * The opening hours live here and only here.
+           *
+           * They used to be repeated inside the location blocks on the home page
+           * and on Megközelítés as well. Three copies of the same table is three
+           * places to miss when the hours change — and on Megközelítés the block
+           * was taking the column the map needed. The footer is on every page,
+           * so nothing is harder to find for having moved.
+           */}
+          <div>
+            <h2 className="text-xs uppercase tracking-[0.2em] text-primary">Nyitvatartás</h2>
+            <OpeningHours hours={site.content.contact.hours} className="mt-4" />
+            <p className="mt-3 text-xs leading-relaxed text-muted">
+              {site.content.contact.deliveryHoursNote}
+            </p>
           </div>
         </div>
 

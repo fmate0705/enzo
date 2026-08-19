@@ -1,20 +1,20 @@
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
 import { Reveal } from '@/components/motion/reveal';
-import { awards, ratings } from '@/content/restaurant';
+import { awards } from '@/content/restaurant';
 import { getSite } from '@/lib/site';
 
 /**
  * Recognition.
  *
- * Two kinds of proof, kept visually distinct: awards the restaurant was given,
- * and scores its guests left. Both are real and both are attributed to a named,
- * linked source — a visitor can check every number on this page in one click.
+ * The awards the restaurant was actually given, each attributed to the body that
+ * gave it and linked to the profile it can be checked against.
  *
- * There are no invented guest quotes here. No review text was available to
- * attribute, and a plausible-sounding testimonial with a first name under it is
- * exactly the kind of thing this site refuses to print. The scores carry the
- * section on their own; see docs/CONTENT-INVENTORY.md for adding real quotes.
+ * There are no invented guest quotes here, and no aggregate scores either. The
+ * scores were real and attributed, but three platform logos under a headline
+ * about craft read as a badge wall — the awards say the same thing with less
+ * noise. The figures still live in content/restaurant.ts if they are ever
+ * wanted back.
  */
 export async function Recognition() {
   const site = await getSite();
@@ -35,8 +35,8 @@ export async function Recognition() {
               <span className="text-primary">munka van.</span>
             </h2>
             <p className="mt-6 max-w-md text-base leading-relaxed text-muted">
-              A Turul Gasztronómia két egymást követő évben minősítette a pizzériát. A pontszám a
-              vendégek értékeléseiből áll össze.
+              A Turul Gasztronómia két egymást követő évben minősítette a pizzériát — a szakmai
+              értékelés és a vendégek visszajelzései alapján.
             </p>
             <a
               href={site.links.turul}
@@ -50,7 +50,7 @@ export async function Recognition() {
             </a>
           </div>
 
-          <div className="space-y-14">
+          <div>
             {/* ---- Awards, as seals ------------------------------------- */}
             <ul className="grid gap-6 sm:grid-cols-2">
               {years.map((year, index) => (
@@ -81,42 +81,6 @@ export async function Recognition() {
                 </Reveal>
               ))}
             </ul>
-
-            {/* ---- Scores ---------------------------------------------- */}
-            <div>
-              <h3 className="text-xs uppercase tracking-[0.2em] text-muted">
-                Amit a vendégek adtak
-              </h3>
-              <dl className="mt-6 grid gap-x-8 gap-y-8 sm:grid-cols-3">
-                {ratings.map((rating, index) => (
-                  <Reveal
-                    key={rating.source}
-                    delay={index * 80}
-                    className="border-t border-border pt-5"
-                  >
-                    <dt className="text-xs uppercase tracking-[0.16em] text-muted">
-                      <a
-                        href={rating.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="transition-colors hover:text-primary"
-                      >
-                        {rating.source}
-                      </a>
-                    </dt>
-                    <dd className="mt-3">
-                      <span className="font-display text-3xl text-foreground">{rating.value}</span>
-                      {rating.scale ? (
-                        <span className="text-lg text-muted">/{rating.scale}</span>
-                      ) : null}
-                      <span className="mt-1 block text-sm text-muted">
-                        {rating.count} {rating.countLabel}
-                      </span>
-                    </dd>
-                  </Reveal>
-                ))}
-              </dl>
-            </div>
           </div>
         </div>
       </Container>

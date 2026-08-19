@@ -166,6 +166,34 @@ local builds only.
 
 ---
 
+### 2026-08-17 — Images resolve by name, not by extension
+
+**The failure.** Nineteen pizzas rendered nothing. The photographs had been
+replaced with cut-out PNGs and the old `.jpg` files deleted; `content/menu.ts`
+was updated to match, but `data/content.json` was not — and the store is what
+renders. next/image answered 400 for every one of them ("isn't a valid image …
+received null"), which shows up in the UI as an empty square and nowhere else.
+
+`tests/assets.test.ts` did not catch it. It validated the seed, which was
+correct, and never looked at the store.
+
+**Three fixes, at three depths:**
+
+1. `lib/images.ts` resolves a stored path by basename when the exact file is
+   missing, so jpg → png → webp becomes a matter of dropping files in. It warns
+   once per path, and returns null rather than a dead path so a genuinely
+   missing photo falls back to the designed typographic card.
+2. The 1024² source PNGs became WebP — identical alpha, 1.9 MB down to ~240 KB,
+   and next/image optimises one in 0.11s instead of 2.5s. Nineteen of those at
+   2.5s each was the other half of "sometimes the images do not load": the
+   optimiser queue simply did not finish. The PNGs are kept in `assets-source/`,
+   outside `public/`.
+3. The asset test now checks the store as well as the seed, and the migration
+   tests derive the extension instead of hard-coding it — the same brittleness
+   that caused the bug had been written into its own test.
+
+---
+
 ### 2026-08-16 — The admin panel, and what it changed
 
 **Decision.** Added an authenticated admin at `/admin` that edits the menu, the

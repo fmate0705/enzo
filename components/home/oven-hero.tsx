@@ -186,7 +186,9 @@ export function OvenHero({ foodoraUrl }: { foodoraUrl: string }) {
             {/* Actions centred under the type, on its axis. */}
             <div
               data-hero-actions=""
-              className="mt-10 flex flex-wrap items-center justify-center gap-4 md:mt-12"
+              // Stacked on a phone: side by side the two labels shrink to a size that is
+              // awkward to hit, and "Rendelés Foodorán" wraps inside its own button.
+              className="mt-10 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:justify-center sm:gap-4 md:mt-12"
             >
               <ButtonLink href="/etlap" size="lg">
                 Étlap

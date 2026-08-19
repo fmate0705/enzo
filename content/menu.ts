@@ -71,16 +71,19 @@ export const categories: readonly MenuCategory[] = [
  * Two helpers rather than one because the two sets of photographs are genuinely
  * different assets, not the same asset in a different container:
  *
- * - `png` — the pizzas. Cut out against transparency and squared to 1024, so
+ * - `cutout` — the pizzas. Cut out against transparency and squared to 1024, so
  *   the plate can be rotated and laid over the page ground with no box around
  *   it. The alpha channel is the whole point, which is why they are not JPEGs.
+ *   Stored as WebP, not PNG: identical alpha, about an eighth of the bytes, and
+ *   next/image optimises one in ~0.1s instead of ~2.5s. The source PNGs live
+ *   outside public/ in assets-source/etelek/.
  * - `img` — everything else. Ordinary rectangular JPEG photographs.
  *
  * The extension is not decoration: `image` is read straight into next/image, so
  * a path pointing at a file that is not there renders nothing at all.
  */
 const img = (slug: string) => `/images/etelek/${slug}.jpg`;
-const png = (slug: string) => `/images/etelek/${slug}.png`;
+const cutout = (slug: string) => `/images/etelek/${slug}.webp`;
 
 export const menu: readonly MenuItem[] = [
   /* ---- Pizzák ------------------------------------------------------------ */
@@ -92,7 +95,7 @@ export const menu: readonly MenuItem[] = [
     description: 'paradicsomszósz, Fior di Latte mozzarella sajt, bazsalikom, olívaolaj',
     price: 2900,
     priceFrom: true,
-    image: png('margherita'),
+    image: cutout('margherita'),
     popular: true,
     signature: true,
   },
@@ -105,7 +108,7 @@ export const menu: readonly MenuItem[] = [
       'paradicsomszósz, Fior di Latte mozzarella sajt, fűszeres gomba, prosciutto cotto, bazsalikom, olívaolaj',
     price: 3790,
     priceFrom: true,
-    image: png('prosciutto-cotto-e-funghi'),
+    image: cutout('prosciutto-cotto-e-funghi'),
     popular: true,
     signature: false,
   },
@@ -118,7 +121,7 @@ export const menu: readonly MenuItem[] = [
       'paradicsomszósz, Fior di Latte mozzarella sajt, Diavola pikáns szalámi, fűszeres, erős pepperoni, bazsalikom',
     price: 3590,
     priceFrom: true,
-    image: png('diavola'),
+    image: cutout('diavola'),
     popular: true,
     signature: true,
   },
@@ -131,7 +134,7 @@ export const menu: readonly MenuItem[] = [
       'paradicsomszósz, Fior di Latte mozzarella sajt, Napoli csemegeszalámi, bazsalikom',
     price: 3790,
     priceFrom: true,
-    image: png('salame'),
+    image: cutout('salame'),
     popular: true,
     signature: false,
   },
@@ -144,7 +147,7 @@ export const menu: readonly MenuItem[] = [
       'paradicsomszósz, Fior di Latte mozzarella sajt, gorgonzola sajt, Provola füstölt sajt, Grana Padano parmezán sajt, bazsalikom, olívaolaj',
     price: 3950,
     priceFrom: true,
-    image: png('quattro-formaggi'),
+    image: cutout('quattro-formaggi'),
     popular: true,
     signature: true,
   },
@@ -157,7 +160,7 @@ export const menu: readonly MenuItem[] = [
       'paradicsomszósz, Fior di Latte mozzarella sajt, tonhaltörzs, lila hagyma, kapribogyó, olívabogyó, citrusolaj',
     price: 3950,
     priceFrom: true,
-    image: png('tonno-e-cipolla'),
+    image: cutout('tonno-e-cipolla'),
     popular: false,
     signature: false,
   },
@@ -170,7 +173,7 @@ export const menu: readonly MenuItem[] = [
       'bazsalikomos pesto, bivaly mozzarella sajt, koktélparadicsom, Grana Padano parmezán sajt, bazsalikom, fenyőmag, olívaolaj',
     price: 4190,
     priceFrom: true,
-    image: png('genovese'),
+    image: cutout('genovese'),
     popular: false,
     signature: false,
   },
@@ -182,7 +185,7 @@ export const menu: readonly MenuItem[] = [
     description: 'paradicsomszósz, bivaly mozzarella sajt, bazsalikom, olívaolaj',
     price: 4190,
     priceFrom: true,
-    image: png('bufalina'),
+    image: cutout('bufalina'),
     popular: false,
     signature: false,
   },
@@ -195,7 +198,7 @@ export const menu: readonly MenuItem[] = [
       'paradicsomszósz, Fior di Latte mozzarella sajt, fűszeres gomba, articsóka, prosciutto cotto, Napoli csemegeszalámi, bazsalikom, olívaolaj',
     price: 4450,
     priceFrom: true,
-    image: png('capricciosa'),
+    image: cutout('capricciosa'),
     popular: false,
     signature: false,
   },
@@ -208,7 +211,7 @@ export const menu: readonly MenuItem[] = [
       'Fior di Latte mozzarella sajt, prosciutto cotto, pancetta, rukkola, ricotta, narancslekvár, bazsalikom, pirított dió',
     price: 4550,
     priceFrom: true,
-    image: png('maradona'),
+    image: cutout('maradona'),
     popular: false,
     signature: false,
   },
@@ -221,7 +224,7 @@ export const menu: readonly MenuItem[] = [
       'pisztáciás-sós krém, Fior di Latte mozzarella sajt, pancetta, fűszeres, sárga datolyaparadicsom, grillezett cukkini',
     price: 4450,
     priceFrom: true,
-    image: png('zucchine-e-pancetta'),
+    image: cutout('zucchine-e-pancetta'),
     popular: false,
     signature: false,
   },
@@ -234,7 +237,7 @@ export const menu: readonly MenuItem[] = [
       'szarvasgombakrém, Fior di Latte mozzarella sajt, fűszeres vargányagomba, grillezett cukkini, bazsalikom',
     price: 4550,
     priceFrom: true,
-    image: png('tartufo'),
+    image: cutout('tartufo'),
     popular: false,
     signature: true,
   },
@@ -247,7 +250,7 @@ export const menu: readonly MenuItem[] = [
       'paradicsomszósz, Fior di Latte mozzarella sajt, prosciutto crudo fűszeres piros és sárga datolyaparadicsom, olívabogyó, rukkola, parmezánpehely, olívaolaj',
     price: 4550,
     priceFrom: true,
-    image: png('prosciutto-crudo'),
+    image: cutout('prosciutto-crudo'),
     popular: false,
     signature: false,
   },
@@ -260,7 +263,7 @@ export const menu: readonly MenuItem[] = [
       'paradicsomszósz, Fior di Latte mozzarella sajt, prosciutto cotto, pancetta, Napoli csemegeszalámi, Nduja pikáns szalámikrém, bazsalikom',
     price: 4870,
     priceFrom: true,
-    image: png('quattro-carni'),
+    image: cutout('quattro-carni'),
     popular: true,
     signature: false,
   },
@@ -273,7 +276,7 @@ export const menu: readonly MenuItem[] = [
       'paradicsomszósz, Grana Padano parmezán sajt, fűszeres sárga és piros datolyaparadicsom, burrata sajt, bazsalikom, olívaolaj',
     price: 4890,
     priceFrom: true,
-    image: png('burrata'),
+    image: cutout('burrata'),
     popular: false,
     signature: true,
   },
@@ -286,7 +289,7 @@ export const menu: readonly MenuItem[] = [
       'paradicsomszósz, Fior di Latte mozzarella sajt, fűszeres datolyaparadicsom, bivaly mozzarella sajt, prosciutto crudo, grillezett paprika, grillezett cukkini, rukkola, parmezánpehely, olívaolaj',
     price: 4800,
     priceFrom: true,
-    image: png('enzo'),
+    image: cutout('enzo'),
     popular: false,
     signature: false,
   },
@@ -299,7 +302,7 @@ export const menu: readonly MenuItem[] = [
       'sárga paradicsomszósz, Fior di Latte mozzarella sajt, pancetta, sárga és piros fűszeres datolyaparadicsom, rukkola, bivaly mozarella sajt',
     price: 5190,
     priceFrom: true,
-    image: png('oro-di-napoli'),
+    image: cutout('oro-di-napoli'),
     popular: false,
     signature: false,
   },
@@ -311,7 +314,7 @@ export const menu: readonly MenuItem[] = [
     description: 'olasz kenyér, rozmaring, olívaolaj',
     price: 1890,
     priceFrom: true,
-    image: png('focaccia-rozmaring'),
+    image: cutout('focaccia-rozmaring'),
     popular: false,
     signature: false,
   },
@@ -323,7 +326,7 @@ export const menu: readonly MenuItem[] = [
     description: 'olasz kenyér, fokhagymás olívaolaj, oregánó',
     price: 1890,
     priceFrom: true,
-    image: png('focaccia-fokhagyma'),
+    image: cutout('focaccia-fokhagyma'),
     popular: false,
     signature: false,
   },
